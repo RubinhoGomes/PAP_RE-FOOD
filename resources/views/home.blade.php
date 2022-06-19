@@ -36,7 +36,7 @@
                             <i class="fa fa-user"></i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-lg mb-0 text-capitalize">Benefeciantes</p>
+                            <p class="text-lg mb-0 text-capitalize">Beneficiários</p>
                             <?php $valorBenef = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorBenef += $gerals->numBeneficiarios?>

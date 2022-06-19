@@ -57,7 +57,7 @@
                    <!-- KmPartida -->
                       <div class="form-group">
                         <label for="kmPartida">Kilométros Partida</label>
-                        <input type="number" class="form-control" id="kmPartida" name="kmPartida" placeholder="Insira o número de kilométros que iniciou a viagem" step="100" value="{{ old('kmPartida') }}">
+                        <input type="number" class="form-control" id="kmPartida" name="kmPartida" placeholder="Insira o número de kilométros que iniciou a viagem" value="{{ old('kmPartida') }}">
                         @error('kmPartida')
                             <p class="text-danger">{{ $errors->first('kmPartida') }} </p>
                         @enderror
@@ -66,7 +66,7 @@
                    <!-- KmChegada -->
                    <div class="form-group">
                     <label for="kmChegada">Kilométros Chegada</label>
-                    <input type="number" class="form-control" id="kmChegada" name="kmChegada" placeholder="Insira o número de kilométros que acabou a viagem" step="100" value="{{ old('kmChegada') }}">
+                    <input type="number" class="form-control" id="kmChegada" name="kmChegada" placeholder="Insira o número de kilométros que acabou a viagem" value="{{ old('kmChegada') }}">
                     @error('kmChegada')
                         <p class="text-danger">{{ $errors->first('kmChegada') }} </p>
                     @enderror

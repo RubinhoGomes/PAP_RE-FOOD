@@ -247,18 +247,11 @@
                                     para ajudar os mais necessitados.
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                                    <li class="nav-item">
-                                        <a href="" class="nav-link text-muted" target="_blank">Página Inicial</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="" class="nav-link text-muted" target="_blank">Sobre Nós</a>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="col-lg-2">
                                 <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                    <li class="nav-item">
+                                        <a href="https://re-food.org/nucleos/portugal/caldas-da-rainha/" class="nav-link" target="_blank"><i class="fa fa-globe"></i></a>
+                                    </li>
                                     <li class="nav-item">
                                         <a href="https://www.facebook.com/RefoodCR/" class="nav-link" target="_blank"><i class="fab fa-facebook"></i></a>
                                     </li>
@@ -267,6 +260,10 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="https://twitter.com/refoodcr" class="nav-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="" class="nav-link" target="_blank"><i class="fas fa-envelope"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

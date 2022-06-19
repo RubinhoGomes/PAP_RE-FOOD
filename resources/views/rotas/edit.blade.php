@@ -116,8 +116,7 @@
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-success" name="btnEditar">Editar</button>
-                    <button type="button" class="btn btn-warning" name="btnLimpar" id="btnLimpar">Limpar</button>
+                    <button type="submit" class="btn btn-success" name="btnEditar">Guardar</button>
                   </div>
               </form>
             </div>

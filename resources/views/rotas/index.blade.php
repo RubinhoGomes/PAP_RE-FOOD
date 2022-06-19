@@ -39,7 +39,7 @@
                         </td>
                        <td>
                         <div class="dropdown">
-                            <button class="text-secondary text-center text-xs font-weight-bold dropbtn">{{ $rota->Carrinhas->marca }}  {{ $rota->Carrinhas->modelo }}</button>
+                            <div class="text-secondary text-center text-xs font-weight-bold dropbtn">{{ $rota->Carrinhas->marca }}  {{ $rota->Carrinhas->modelo }}</div>
                             <div class="dropdown-content">
                                 <div class="d-flex flex-column justify-content-center">
                                     <i class="text-secondary text-center text-xs font-weight-bold fas fa-car m-2 p-1"> {{ $rota->Carrinhas->cor }}<i class="fas fa-car p-1"></i></i>
@@ -56,7 +56,7 @@
                         </td>
                         <td class="align-middle text-center">
                             <div class="dropdown">
-                                <button class="dropbtn text-secondary text-center text-xs font-weight-bold">{{ $rota->data }}</button>
+                                <div class="dropbtn text-secondary text-center text-xs font-weight-bold">{{ $rota->data }}</div>
                                 <div class="dropdown-content">
                                     <div class="d-flex flex-column justify-content-center">
                                         <i class="text-secondary text-center text-xs font-weight-bold fas fa-hourglass-start m-2"> {{ $rota->horaPartida }} - {{ $rota->horaChegada }}<i class="fas fa-hourglass-end m-1"></i></i>
