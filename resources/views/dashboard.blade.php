@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('ENTRASTE DEFECIENTE FDSSSSSSSS!') }}
+                    {{ __('Dashboard') }}
                 </div>
             </div>
         </div>

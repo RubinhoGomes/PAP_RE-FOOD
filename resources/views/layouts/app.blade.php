@@ -262,7 +262,7 @@
                                         <a href="https://twitter.com/refoodcr" class="nav-link" target="_blank"><i class="fab fa-twitter"></i></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="" class="nav-link" target="_blank"><i class="fas fa-envelope"></i></a>
+                                        <a href="mailto:geral.caldasdarainha@re-food.org" class="nav-link" target="_blank"><i class="fas fa-envelope"></i></a>
                                     </li>
                                 </ul>
                             </div>
