@@ -15,7 +15,6 @@
                             <?php $valorAssoc = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorAssoc += $gerals->numAssociacoesParceiras?>
-
                                 @endforeach
                                 {{ $valorAssoc }}
                             </h4>
@@ -23,8 +22,8 @@
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55%
-                            </span>than lask week</p>
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55%
+                            </span>than lask week</p> --}}
                     </div>
                 </div>
             </div>
@@ -40,15 +39,14 @@
                             <?php $valorBenef = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorBenef += $gerals->numBeneficiarios?>
-
                                 @endforeach
                                 {{ $valorBenef }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3%
-                            </span>than lask month</p>
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3%
+                            </span>than lask month</p> --}}
                     </div>
                 </div>
             </div>
@@ -64,15 +62,14 @@
                             <?php $valorFam = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorFam += $gerals->numFamilias?>
-
                                 @endforeach
                                 {{ $valorFam }}
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span>
-                            than yesterday</p>
+                        {{-- <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span>
+                            than yesterday</p> --}}
                     </div>
                 </div>
             </div>
@@ -88,15 +85,14 @@
                             <?php $valorFontesA = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorFontesA += $gerals->numFontesAlimentos?>
-
                                 @endforeach
                                 {{ $valorFontesA }}
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                            </span>than yesterday</p>
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                            </span>than yesterday</p> --}}
                     </div>
                 </div>
             </div>
@@ -112,15 +108,14 @@
                             <?php $valorParcS = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorParcS += $gerals->numParceirosSociais?>
-
                                 @endforeach
                                 {{ $valorParcS }}
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                            </span>than yesterday</p>
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                            </span>than yesterday</p> --}}
                     </div>
                 </div>
             </div>
@@ -136,15 +131,14 @@
                             <?php $valorAssocP = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorAssocP += $gerals->numAssociacoesParceiras?>
-
                                 @endforeach
                                 {{ $valorAssocP }}
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                            </span>than yesterday</p>
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                            </span>than yesterday</p> --}}
                     </div>
                 </div>
             </div>

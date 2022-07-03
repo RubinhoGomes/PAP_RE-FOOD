@@ -106,10 +106,8 @@
             navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-
                     @foreach ($geral as $gerals)
                         <h6 class="font-weight-bolder mb-0 text-Refood">{{-- Re-Food --}}Mes: {{ $gerals->mes }}</h6>
-
                     @endforeach
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -142,26 +140,6 @@
                                 </a>
                                 <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
                                     aria-labelledby="dropdownMenuButton">
-                                    <li class="mb-2">
-                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                            <div class="d-flex py-1">
-                                                <div class="my-auto">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"
-                                                        class="avatar avatar-sm  me-3 ">
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="text-sm font-weight-normal mb-1">
-                                                        <span class="font-weight-bold">Minha FOFINHAA (Inês Rodrigues)</span> É MUITO
-                                                        FOFINHA
-                                                    </h6>
-                                                    <p class="text-xs text-secondary mb-0">
-                                                        <i class="fa fa-clock me-1"></i>
-                                                        SEMPRE
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
                                     <li class="mb-2">
                                         <a class="dropdown-item border-radius-md" href="javascript:;">
                                             <div class="d-flex py-1">

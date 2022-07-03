@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Despesas;
 use App\Models\Geral;
 
 /*
@@ -17,8 +16,7 @@ use App\Models\Geral;
 
 Route::get('/', function () {
     $geral = Geral::all();
-    $despesas = Despesas::all();
-    return view('home', compact('geral'), compact('despesas'));
+    return view('home', compact('geral'));
 });
 
 Auth::routes();
@@ -28,6 +26,7 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 
+// ** ** ** ** **
 
 // Rotas / BackOffice
 // Rotas Listar
@@ -53,3 +52,35 @@ Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'upda
 //Delete Rotas
 
 Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
+
+// Rotas / FrontOffice
+
+
+// ** ** ** ** **
+
+// Donativos / BackOffice
+// Donativos Listar
+
+// ** Route::get('/rotas', [App\Http\Controllers\RotasController::class, 'index'])->name('rotas');
+
+//Criar Donativos
+
+// ** Route::get('/rotas/create', [App\Http\Controllers\RotasController::class, 'create'])->name('rotas.create');
+
+//Guardar Donativos
+
+// ** Route::post('/rotas', [App\Http\Controllers\RotasController::class, 'store']);
+
+//Form Edit Donativos
+
+// **Route::get('/rotas/edit/{rotas}', [App\Http\Controllers\RotasController::class, 'edit']);
+
+//Update Donativos
+
+// ** Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'update']);
+
+//Delete Donativos
+
+// ** Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
+
+// Donativos / FrontOffice
