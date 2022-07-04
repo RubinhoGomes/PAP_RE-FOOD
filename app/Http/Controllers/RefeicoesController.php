@@ -14,7 +14,9 @@ class RefeicoesController extends Controller
      */
     public function index()
     {
-        //
+        // Buscar dados a base de dados
+        $refeicoes = Refeicoes::all();
+        return view('refeicoes.index', compact('refeicoes'));
     }
 
     /**

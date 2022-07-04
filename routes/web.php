@@ -58,29 +58,29 @@ Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'd
 
 // ** ** ** ** **
 
-// Donativos / BackOffice
-// Donativos Listar
+// Refeições / BackOffice
+// Refeições Listar
 
-// ** Route::get('/rotas', [App\Http\Controllers\RotasController::class, 'index'])->name('rotas');
+Route::get('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'index'])->name('refeicoes');
 
-//Criar Donativos
+//Criar Refeições
 
 // ** Route::get('/rotas/create', [App\Http\Controllers\RotasController::class, 'create'])->name('rotas.create');
 
-//Guardar Donativos
+//Guardar Refeições
 
 // ** Route::post('/rotas', [App\Http\Controllers\RotasController::class, 'store']);
 
-//Form Edit Donativos
+//Form Edit Refeições
 
 // **Route::get('/rotas/edit/{rotas}', [App\Http\Controllers\RotasController::class, 'edit']);
 
-//Update Donativos
+//Update Refeições
 
 // ** Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'update']);
 
-//Delete Donativos
+//Delete Refeições
 
 // ** Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
 
-// Donativos / FrontOffice
+// Refeições / FrontOffice

@@ -13,8 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <p>Visualizar Grafico Rotas</p>
+                    <p>Visualizar Grafico Refeição</p>
+                    <p>Visualizar Grafico Donativos</p>
+                    <p>Visualizar Grafico Despesas</p>
+                    <p>Visualizar Grafico Carrinhas</p>
 
-                    {{ __('Dashboard') }}
                 </div>
             </div>
         </div>

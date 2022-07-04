@@ -128,12 +128,12 @@
                                     </div>
                                 </a>
                             </li>
-                            <li class="nav-item px-3 d-flex align-items-center">
+                            {{-- <li class="nav-item px-3 d-flex align-items-center">
                                 <a href="javascript:;" class="nav-link text-body p-0">
                                     <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                                 </a>
-                            </li>
-                            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            </li> --}}
+                            {{-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
                                 <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-bell cursor-pointer"></i>
@@ -197,7 +197,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
 
@@ -223,7 +223,7 @@
                             para ajudar os mais necessitados.
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
                                 <a href="https://re-food.org/nucleos/portugal/caldas-da-rainha/" class="nav-link" target="_blank"><i class="fa fa-globe"></i></a>

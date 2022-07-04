@@ -100,7 +100,7 @@
                         <span class="nav-link-text ms-1">Refeições</span>
                     </a>
                     <div class="dropdown-menu fade-up m-1">
-                        <a href="#RR1" class="dropdown-item">Listar</a>
+                        <a href="{{ route('refeicoes') }}" class="dropdown-item">Listar</a>
                         <a href="#RR2" class="dropdown-item">Adicionar</a>
                     </div>
                 </div>
@@ -187,11 +187,11 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
+                            {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
                                 </li>
-                            @endif
+                            @endif --}}
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -247,7 +247,7 @@
                                     para ajudar os mais necessitados.
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-6">
                                 <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                                     <li class="nav-item">
                                         <a href="https://re-food.org/nucleos/portugal/caldas-da-rainha/" class="nav-link" target="_blank"><i class="fa fa-globe"></i></a>
