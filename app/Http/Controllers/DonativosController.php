@@ -35,7 +35,35 @@ class DonativosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Guarda na base de dados
+
+        Request()->validate([
+            // 'motorista' => 'required',
+            // 'carrinhas' => 'required',
+            // 'numRota' => 'required',
+            // 'kmPartida' => 'required',
+            // 'kmChegada' => 'required',
+            // 'horaPartida' => 'required',
+            // 'horaChegada' => 'required',
+            // 'data' => 'required',
+            // 'observacoes' => 'required',
+
+        ]);
+
+        // $donativos = new Donativos();
+        // $donativos->motorista = request('motorista'); //vai buscar ao form
+        // $donativos->carrinhas_id = request('carrinhas');
+        // $donativos->numRota = request('numRota');
+        // $donativos->kmPartida = request('kmPartida');
+        // $donativos->kmChegada = request('kmChegada');
+        // $donativos->HoraPartida = request('horaPartida');
+        // $donativos->horaChegada = request('horaChegada');
+        // $donativos->data = request('data');
+        // $donativos->observacoes = request('observacoes');
+
+        // /*$rotas->user_id = Auth::id(); */
+        // $donativos->save();
+        // return redirect('/donativos')->with('message', 'Donativo inserido com sucesso');
     }
 
     /**

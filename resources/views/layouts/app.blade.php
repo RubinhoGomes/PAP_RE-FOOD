@@ -101,7 +101,7 @@
                     </a>
                     <div class="dropdown-menu fade-up m-1">
                         <a href="{{ route('refeicoes') }}" class="dropdown-item">Listar</a>
-                        <a href="#RR2" class="dropdown-item">Adicionar</a>
+                        <a href="{{ route('refeicoes.create') }}" class="dropdown-item">Adicionar</a>
                     </div>
                 </div>
 

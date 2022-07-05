@@ -31,7 +31,7 @@ class RotasController extends Controller
     {
         // Selecionar todos os dados da base de dados referente as carrinhas para depois guardar
 
-        $carrinhas = Carrinhas::all(); // Select * from rotas
+        $carrinhas = Carrinhas::all(); // Select * from Carrinhas
         return view('rotas.create', compact('carrinhas'));
     }
 

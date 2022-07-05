@@ -65,22 +65,22 @@ Route::get('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'inde
 
 //Criar Refeições
 
-// ** Route::get('/rotas/create', [App\Http\Controllers\RotasController::class, 'create'])->name('rotas.create');
+Route::get('/refeicoes/create', [App\Http\Controllers\RefeicoesController::class, 'create'])->name('refeicoes.create');
 
 //Guardar Refeições
 
-// ** Route::post('/rotas', [App\Http\Controllers\RotasController::class, 'store']);
+Route::post('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'store']);
 
 //Form Edit Refeições
 
-// **Route::get('/rotas/edit/{rotas}', [App\Http\Controllers\RotasController::class, 'edit']);
+Route::get('/refeicoes/edit/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'edit']);
 
 //Update Refeições
 
-// ** Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'update']);
+Route::put('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'update']);
 
 //Delete Refeições
 
-// ** Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
+Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RotasController::class, 'destroy']);
 
 // Refeições / FrontOffice

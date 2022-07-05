@@ -25,33 +25,6 @@
                 <tbody>
                     @foreach ($refeicoes as $refeicao)
                     <tr>
-                        {{-- <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                            <!-- <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1"> -->
-                                <i class="fas fa-user-tie m-2"></i>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">{{ $rota->motorista }}</h6>
-                             <!--  <p class="text-xs text-secondary mb-0">Número Rota: {{ $rota->numRota }}</p> -->
-                            </div>
-                          </div>
-                        </td> --}}
-
-                        {{-- <td>
-                        <div class="dropdown">
-                            <div class="text-secondary text-center text-xs font-weight-bold dropbtn">{{ $rota->Carrinhas->marca }}  {{ $rota->Carrinhas->modelo }}</div>
-                            <div class="dropdown-content">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <i class="text-secondary text-center text-xs font-weight-bold fas fa-car m-2 p-1"> {{ $rota->Carrinhas->cor }}<i class="fas fa-car p-1"></i></i>
-                                    <i class="text-secondary text-center text-xs font-weight-bold fas fa-id-card m-2 p-1"> {{ $rota->Carrinhas->matricula }} <i class="fas fa-id-card p-1"></i></i>
-                                </div>
-                            </div> --}}
-
-                            {{-- <p class="text-xs font-weight-bold mb-0">{{ $rota->Carrinhas->cor }}</>
-                            <p class="text-xs text-secondary mb-0"></p> --}}
-                            {{-- </div>
-                        </td> --}}
 
                         <td class="align-middle text-center text-sm">
                             <span class="text-secondary text-center text-xs font-weight-bold{{-- badge badge-sm bg-gradient-success --}}">{{ $refeicao->kgBenefeciarios }}</span>
@@ -68,17 +41,11 @@
                         <td class="align-middle text-center">
                             <div class="dropdown">
                                 <div class="text-secondary text-center text-xs font-weight-bold">{{ $refeicao->mes}}<span>-</span>{{$refeicao->ano}}</div>
-                                {{-- <div class="dropdown-content">
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <i class="text-secondary text-center text-xs font-weight-bold fas fa-hourglass-start m-2"> {{ $rota->horaPartida }} - {{ $rota->horaChegada }}<i class="fas fa-hourglass-end m-1"></i></i>
-                                    </div>
-                                </div> --}}
-                                {{-- <span class="text-secondary text-xs font-weight-bold">{{ $rota->data }}</span> --}}
                             </div>
                         </td>
                         <td class="align-middle text-center">
                             {{--Botão Editar --}}
-                             <a href="/refeicao/edit/{{ $refeicao->id }}">
+                             <a href="/refeicoes/edit/{{ $refeicao->id }}">
                                 <button type="submit" class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-ellipsis-v text-xs"></i>
                                 </button>
@@ -86,7 +53,7 @@
                         </td>
                         <td class="align-middle text-left">
                             {{--Botão Remover --}}
-                             <form role="form" action="/refeicao/{{ $refeicao->id }}" method="post">
+                             <form role="form" action="/refeicoes/{{ $refeicao->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-link text-danger mb-0" aria-haspopup="true" aria-expanded="false">

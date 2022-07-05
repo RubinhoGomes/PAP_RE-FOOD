@@ -15,7 +15,7 @@ class RefeicoesController extends Controller
     public function index()
     {
         // Buscar dados a base de dados
-        $refeicoes = Refeicoes::all();
+        $refeicoes = Refeicoes::all(); // Select * from Refeições
         return view('refeicoes.index', compact('refeicoes'));
     }
 
@@ -26,7 +26,9 @@ class RefeicoesController extends Controller
      */
     public function create()
     {
-        //
+        // Da return ao formulario
+        $refeicoes = Refeicoes::all(); // Select * from Refeições
+        return view('refeicoes.create', compact('refeicoes'));
     }
 
     /**
@@ -37,7 +39,26 @@ class RefeicoesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Guarda na base de dados
+
+        Request()->validate([
+            'kgBen' => 'required',
+            'kgAssoc' => 'required',
+            'kgAssoc2' => 'required',
+            'mes' => 'required',
+            'ano' => 'required',
+        ]);
+
+        $refeicoes = new Refeicoes();
+        $refeicoes->kgBenefeciarios = request('kgBen'); //vai buscar ao form
+        $refeicoes->kgAssociacoes = request('kgAssoc');
+        $refeicoes->kg2Associacoes = request('kgAssoc2');
+        $refeicoes->mes = request('mes');
+        $refeicoes->ano = request('ano');
+
+        /*$rotas->user_id = Auth::id(); */
+        $refeicoes->save();
+        return redirect('/refeicoes')->with('message', 'Refeição inserida com sucesso');
     }
 
     /**
@@ -60,6 +81,8 @@ class RefeicoesController extends Controller
     public function edit(Refeicoes $refeicoes)
     {
         //
+        $refeicoes = Refeicoes::all(); // Select * from Refeições
+        return view('refeicoes.edit', compact('refeicoes'));
     }
 
     /**
@@ -71,7 +94,25 @@ class RefeicoesController extends Controller
      */
     public function update(Request $request, Refeicoes $refeicoes)
     {
-        //
+        // Guarda na base de dados
+
+        Request()->validate([
+            'kgBen' => 'required',
+            'kgAssoc' => 'required',
+            'kgAssoc2' => 'required',
+            'mes' => 'required',
+            'ano' => 'required',
+        ]);
+
+        $refeicoes->kgBenefeciarios = request('kgBen'); //vai buscar ao form
+        $refeicoes->kgAssociacoes = request('kgAssoc');
+        $refeicoes->kg2Associacoes = request('kgAssoc2');
+        $refeicoes->mes = request('mes');
+        $refeicoes->ano = request('ano');
+
+        /*$rotas->user_id = Auth::id(); */
+        $refeicoes->save();
+        return redirect('/refeicoes')->with('message', 'Refeição atualizada com sucesso');
     }
 
     /**
@@ -82,6 +123,8 @@ class RefeicoesController extends Controller
      */
     public function destroy(Refeicoes $refeicoes)
     {
-        //
+        // Apaga da base de dados o registo
+        $refeicoes->delete();
+        return redirect('/refeicoes')->with('message', 'Refeição eliminada com sucesso!');
     }
 }
