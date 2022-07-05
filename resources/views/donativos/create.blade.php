@@ -8,112 +8,50 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title text-center">Nova Rota</h3>
+                <h3 class="card-title text-center">Novo Donativo</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="post" action="/rotas" enctype="multipart/form-data">
+              <form role="form" method="post" action="/donativos" enctype="multipart/form-data">
                   @csrf
 
                   <div class="card-body">
-                    <!-- Motorista -->
-                    <div class="form-group">
-                      <label for="motorista">Motorista</label>
-                      <input type="text" class="form-control" id="motorista" name="motorista" placeholder="Insira o nome do motirsta" value="{{ old('motorista') }}">
-                      @error('motorista')
-                          <p class="text-danger">{{ $errors->first('motorista') }} </p>
-                      @enderror
-                    </div>
-
-                    <!-- Carrinhas -->
-                    <div class="form-group">
-                        <label for="carrinhas">Carrinhas</label>
-                        <select class="form-control select2" name="carrinhas" id="carrinhas" style="width: 100%;">
-                          <option value="DO" selected="selected" disabled>Selecione uma Carrinnha</option>
-                          @foreach ($carrinhas as $car)
-
-                          @if (old('carrinhas') == $car->id)
-                          <option value="{{ $car->id }}" selected>{{ $car->marca }} {{ $car->modelo }} ({{ $car->cor }})</option>
-                          @else
-                          <option value="{{ $car->id }}">{{ $car->marca }} {{ $car->modelo }} ({{ $car->cor }})</option>
-                          @endif
-
-                          @endforeach
-                        </select>
-                        @error('carrinhas')
-                        <p class="text-danger">{{ $errors->first('carrinhas') }} </p>
-                        @enderror
-                      </div>
-
-                    <!-- Número da Rota -->
+                    <!-- Valor dos donativos -->
                       <div class="form-group">
-                        <label for="numRota">Número da Rota</label>
-                        <input type="number" class="form-control" id="numRota" name="numRota" placeholder="Insira o número da rota" min="0" max="7" value="{{ old('numRota') }}">
-                        @error('numRota')
-                            <p class="text-danger">{{ $errors->first('numRota') }} </p>
+                        <label for="ValDon">Valor dos donativos</label>
+                        <input type="number" class="form-control" id="ValDon" name="ValDon" placeholder="Insira o valor dos donativos" value="{{ old('ValDon') }}">
+                        @error('ValDon')
+                            <p class="text-danger">{{ $errors->first('ValDon') }} </p>
                         @enderror
                       </div>
-
-                   <!-- KmPartida -->
-                      <div class="form-group">
-                        <label for="kmPartida">Kilométros Partida</label>
-                        <input type="number" class="form-control" id="kmPartida" name="kmPartida" placeholder="Insira o número de kilométros que iniciou a viagem" value="{{ old('kmPartida') }}">
-                        @error('kmPartida')
-                            <p class="text-danger">{{ $errors->first('kmPartida') }} </p>
+                    <!-- Valor alimentos não perecíveis -->
+                    <div class="form-group">
+                        <label for="ValNPer">Valor dos alimentos não perciveis</label>
+                        <input type="number" class="form-control" id="ValNPer" name="ValNPer" placeholder="Insira o valor dos alimentos não percíveis" value="{{ old('ValNPer') }}">
+                        @error('ValNPer')
+                            <p class="text-danger">{{ $errors->first('ValNPer') }} </p>
                         @enderror
                       </div>
-
-                   <!-- KmChegada -->
-                   <div class="form-group">
-                    <label for="kmChegada">Kilométros Chegada</label>
-                    <input type="number" class="form-control" id="kmChegada" name="kmChegada" placeholder="Insira o número de kilométros que acabou a viagem" value="{{ old('kmChegada') }}">
-                    @error('kmChegada')
-                        <p class="text-danger">{{ $errors->first('kmChegada') }} </p>
-                    @enderror
-                  </div>
-
-                   <!-- HoraPartida -->
-                   <div class="form-group">
-                        <label for="horaPartida">Hora Partida</label>
-                        <input type="time" class="form-control" id="horaPartida" name="horaPartida" value="{{ old('horaPartida') }}">
-                        @error('horaPartida')
-                             <p class="text-danger">{{ $errors->first('horaPartida') }} </p>
+                    <!-- Valor dos consumiveis -->
+                    <div class="form-group">
+                        <label for="valCons">Valor dos consumíveis</label>
+                        <input type="number" class="form-control" id="valCons" name="valCons" placeholder="Insira o valor dos consumíveis" value="{{ old('valCons') }}">
+                        @error('valCons')
+                            <p class="text-danger">{{ $errors->first('valCons') }} </p>
                         @enderror
-                    </div>
-
-
-                   <!-- HoraChegada -->
-                   <div class="form-group">
-                        <label for="horaChegada">Hora Chegada</label>
-                        <input type="time" class="form-control" id="horaChegada" name="horaChegada" value="{{ old('horaChegada') }}">
-                        @error('horaChegada')
-                             <p class="text-danger">{{ $errors->first('horaChegada') }} </p>
-                        @enderror
-                    </div>
-
-
+                      </div>
                    <!-- Data -->
                     <div class="form-group">
                         <label for="data">Data</label>
-                        <input type="date" class="form-control" id="data" name="data" value="{{ old('data') }}">
+                        {{-- <input type="date" class="form-control" id="data" name="data" value="{{ old('data') }}">
                         @error('data')
                              <p class="text-danger">{{ $errors->first('data') }} </p>
-                        @enderror
+                        @enderror --}}
+                        <div class="row">
+                            <input type="number" class="col-md-2" id="mes" name="mes" min="1" max="12" placeholder="Insira o mês" value="{{ old('mes') }}">
+                            <input type="number" class="col-md-2" id="ano" name="ano" min="1912" max="<?php echo date("Y"); ?>" placeholder="Insira o ano" value="{{ old('ano') }}">
+                        </div>
                     </div>
-
-                    <!-- Observações -->
-                    <div class="form-group">
-                        <label for="observacoes">Observações</label>
-                        <textarea class="form-control" id="observacoes" name="observacoes">
-
-                          {{ old('observacoes') }}
-
-                        </textarea>
-                        @error('observacoes')
-                           <p class="text-danger">{{ $errors->first('observacoes') }} </p>
-                        @enderror
-                      </div>
-                  </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-success" name="btnCriar">Criar</button>

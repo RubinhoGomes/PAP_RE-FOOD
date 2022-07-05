@@ -95,11 +95,11 @@ Route::get('/donativos', [App\Http\Controllers\DonativosController::class, 'inde
 
 //Criar Donativos
 
-// Route::get('/rotas/create', [App\Http\Controllers\RotasController::class, 'create'])->name('rotas.create');
+Route::get('/donativos/create', [App\Http\Controllers\DonativosController::class, 'create'])->name('donativos.create');
 
 //Guardar Donativos
 
-// Route::post('/rotas', [App\Http\Controllers\RotasController::class, 'store']);
+Route::post('/donativos', [App\Http\Controllers\DonativosController::class, 'store']);
 
 //Form Edit Donativos
 

@@ -124,7 +124,7 @@
                     </a>
                     <div class="dropdown-menu fade-up m-1">
                         <a href="{{ route('donativos') }}" class="dropdown-item">Listar</a>
-                        <a href="#D2" class="dropdown-item">Adicionar</a>
+                        <a href="{{ route('donativos.create') }}" class="dropdown-item">Adicionar</a>
                     </div>
                 </div>
 

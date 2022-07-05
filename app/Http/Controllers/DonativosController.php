@@ -27,6 +27,8 @@ class DonativosController extends Controller
     public function create()
     {
         //
+        $donativos = Donativos::all(); //Select * from Donativos
+        return view('donativos.create', compact('donativos'));
     }
 
     /**
@@ -40,28 +42,19 @@ class DonativosController extends Controller
         // Guarda na base de dados
 
         Request()->validate([
-            'motorista' => 'required',
-            'carrinhas' => 'required',
-            'numRota' => 'required',
-            'kmPartida' => 'required',
-            'kmChegada' => 'required',
-            'horaPartida' => 'required',
-            'horaChegada' => 'required',
-            'data' => 'required',
-            'observacoes' => 'required',
-
+            'ValDon' => 'required',
+            'ValNPer' => 'required',
+            'ValCons' => 'required',
+            'mes' => 'required',
+            'ano' => 'required',
         ]);
 
         $donativos = new Donativos();
-        $donativos->motorista = request('motorista'); //vai buscar ao form
-        $donativos->carrinhas_id = request('carrinhas');
-        $donativos->numRota = request('numRota');
-        $donativos->kmPartida = request('kmPartida');
-        $donativos->kmChegada = request('kmChegada');
-        $donativos->HoraPartida = request('horaPartida');
-        $donativos->horaChegada = request('horaChegada');
-        $donativos->data = request('data');
-        $donativos->observacoes = request('observacoes');
+        $donativos->valorDinheiro = request('ValDon'); //vai buscar ao form
+        $donativos->valorNaoPerciveis = request('ValNPer');
+        $donativos->valorConsumiveis = request('ValCons');
+        $donativos->mes = request('mes');
+        $donativos->ano = request('ano');
 
         /*$rotas->user_id = Auth::id(); */
         $donativos->save();
