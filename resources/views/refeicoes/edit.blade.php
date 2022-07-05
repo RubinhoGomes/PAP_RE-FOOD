@@ -20,7 +20,7 @@
                     <!-- Kg dos benefeciarios -->
                     <div class="form-group">
                         <label for="kgBen">Quilogramas dos Benefeciarios</label>
-                        <input type="number" class="form-control" id="kgBen" name="kgBen" placeholder="Insira o número de quilogramas dos benefeciarios" value="{{ old('kgBen') }}">
+                        <input type="number" class="form-control" id="kgBen" name="kgBen" placeholder="Insira o número de quilogramas dos benefeciarios" value="{{ $refeicoes->kgBenefeciarios }}">
                         @error('kgBen')
                             <p class="text-danger"> {{ $errors->first('kgBen') }} </p>
                         @enderror
@@ -30,7 +30,7 @@
                     <!-- Kg das Assiciações Bolos e Pão -->
                     <div class="form-group">
                         <label for="kgAssoc">Quilogramas das Associações (Pão e Bolos)</label>
-                        <input type="number" class="form-control" id="kgAssoc" name="kgAssoc" placeholder="Insira o número de quilogramas das associações" value="{{ old('kgAssoc') }}">
+                        <input type="number" class="form-control" id="kgAssoc" name="kgAssoc" placeholder="Insira o número de quilogramas das associações" value="{{ $refeicoes->kgAssociacoes }}">
                         @error('kgAssoc')
                             <p class="text-danger">{{ $errors->first('kgAssoc') }} </p>
                         @enderror
@@ -40,7 +40,7 @@
                     <!-- Kg das Assiciações Pratos e Refeições -->
                     <div class="form-group">
                         <label for="kgAssoc2">Quilogramas das Associações (Pratos e Refeições)</label>
-                        <input type="number" class="form-control" id="kgAssoc2" name="kgAssoc2" placeholder="Insira o número de quilogramas das associações" value="{{ old('kgAssoc2') }}">
+                        <input type="number" class="form-control" id="kgAssoc2" name="kgAssoc2" placeholder="Insira o número de quilogramas das associações" value="{{ $refeicoes->kg2Associacoes }}">
                         @error('kgAssoc2')
                             <p class="text-danger">{{ $errors->first('kgAssoc2') }} </p>
                         @enderror
@@ -51,8 +51,8 @@
                     <div class="form-group">
                         <label for="data">Data</label>
                         <div class="row">
-                            <input type="number" class="col-md-2" id="mes" name="mes" min="1" max="12" placeholder="Insira o mês" value="{{ old('mes') }}">
-                            <input type="number" class="col-md-2" id="ano" name="ano" min="1912" max="<?php echo date("Y"); ?>" placeholder="Insira o ano" value="{{ old('ano') }}">
+                            <input type="number" class="col-md-2" id="mes" name="mes" min="1" max="12" placeholder="Insira o mês" value="{{ $refeicoes->mes }}">
+                            <input type="number" class="col-md-2" id="ano" name="ano" min="1912" max="<?php echo date("Y"); ?>" placeholder="Insira o ano" value="{{ $refeicoes->ano }}">
                         </div>
                     </div>
                     <!-- -->

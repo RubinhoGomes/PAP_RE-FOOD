@@ -81,7 +81,6 @@ class RefeicoesController extends Controller
     public function edit(Refeicoes $refeicoes)
     {
         //
-        $refeicoes = Refeicoes::all(); // Select * from Refeições
         return view('refeicoes.edit', compact('refeicoes'));
     }
 

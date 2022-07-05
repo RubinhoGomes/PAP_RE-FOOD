@@ -107,7 +107,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     @foreach ($geral as $gerals)
-                        <h6 class="font-weight-bolder mb-0 text-Refood">{{-- Re-Food --}}Mes: {{ $gerals->mes }}</h6>
+                        <h6 class="font-weight-bolder mb-0 text-Refood">{{-- Re-Food --}}Mês: {{ $gerals->mes }}</h6>
                     @endforeach
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Geral;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        return view('dashboard');
+        $geral = Geral::all();
+        return view('dashboard', compact('geral'));
     }
 }
