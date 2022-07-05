@@ -103,14 +103,44 @@ Route::post('/donativos', [App\Http\Controllers\DonativosController::class, 'sto
 
 //Form Edit Donativos
 
-// Route::get('/rotas/edit/{rotas}', [App\Http\Controllers\RotasController::class, 'edit']);
+Route::get('/donativos/edit/{donativos}', [App\Http\Controllers\DonativosController::class, 'edit']);
 
 //Update Donativos
 
-// Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'update']);
+Route::put('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'update']);
 
 //Delete Donativos
 
-// Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
+Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'destroy']);
 
 // Donativos / FrontOffice
+
+
+// ** ** ** ** **
+
+// Despesas / BackOffice
+// Despesas Listar
+
+Route::get('/despesas', [App\Http\Controllers\DespesasController::class, 'index'])->name('despesas');
+
+//Criar Despesas
+
+Route::get('/despesas/create', [App\Http\Controllers\DespesasController::class, 'create'])->name('despesas.create');
+
+//Guardar Despesas
+
+Route::post('/despesas', [App\Http\Controllers\DespesasController::class, 'store']);
+
+//Form Edit Despesas
+
+Route::get('/despesas/edit/{despesas}', [App\Http\Controllers\DespesasController::class, 'edit']);
+
+//Update Despesas
+
+Route::put('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'update']);
+
+//Delete Despesas
+
+Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'destroy']);
+
+// Despesas / FrontOffice

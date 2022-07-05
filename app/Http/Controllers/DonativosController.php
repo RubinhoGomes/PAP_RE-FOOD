@@ -42,17 +42,17 @@ class DonativosController extends Controller
         // Guarda na base de dados
 
         Request()->validate([
-            'ValDon' => 'required',
-            'ValNPer' => 'required',
-            'ValCons' => 'required',
+            'valDon' => 'required',
+            'valNPer' => 'required',
+            'valCons' => 'required',
             'mes' => 'required',
             'ano' => 'required',
         ]);
 
         $donativos = new Donativos();
-        $donativos->valorDinheiro = request('ValDon'); //vai buscar ao form
-        $donativos->valorNaoPerciveis = request('ValNPer');
-        $donativos->valorConsumiveis = request('ValCons');
+        $donativos->valorDinheiro = request('valDon'); //vai buscar ao form
+        $donativos->valorNaoPerciveis = request('valNPer');
+        $donativos->valorConsumiveis = request('valCons');
         $donativos->mes = request('mes');
         $donativos->ano = request('ano');
 
@@ -81,6 +81,7 @@ class DonativosController extends Controller
     public function edit(Donativos $donativos)
     {
         //
+        return view('donativos.edit', compact('donativos'));
     }
 
     /**
@@ -92,7 +93,25 @@ class DonativosController extends Controller
      */
     public function update(Request $request, Donativos $donativos)
     {
-        //
+        // Guarda na base de dados
+
+        Request()->validate([
+            'valDon' => 'required',
+            'valNPer' => 'required',
+            'valCons' => 'required',
+            'mes' => 'required',
+            'ano' => 'required',
+        ]);
+
+        $donativos->valorDinheiro = request('valDon'); //vai buscar ao form
+        $donativos->valorNaoPerciveis = request('valNPer');
+        $donativos->valorConsumiveis = request('valCons');
+        $donativos->mes = request('mes');
+        $donativos->ano = request('ano');
+
+        /*$rotas->user_id = Auth::id(); */
+        $donativos->save();
+        return redirect('/donativos')->with('message', 'Donativo inserido com sucesso');
     }
 
     /**
@@ -104,5 +123,7 @@ class DonativosController extends Controller
     public function destroy(Donativos $donativos)
     {
         //
+        $donativos->delete();
+        return redirect('/donativos')->with('message', 'Donativo eliminado com sucesso!');
     }
 }

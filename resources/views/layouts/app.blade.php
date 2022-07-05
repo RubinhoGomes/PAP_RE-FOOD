@@ -148,8 +148,8 @@
                         <span class="nav-link-text ms-1">Despesas</span>
                     </a>
                     <div class="dropdown-menu fade-up m-1">
-                        <a href="#DD1" class="dropdown-item">Listar</a>
-                        <a href="#DD2" class="dropdown-item">Adicionar</a>
+                        <a href="{{ route('despesas') }}" class="dropdown-item">Listar</a>
+                        <a href="{{ route('despesas.create') }}" class="dropdown-item">Adicionar</a>
                     </div>
                 </div>
 

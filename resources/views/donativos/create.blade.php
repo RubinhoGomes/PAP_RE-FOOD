@@ -18,18 +18,18 @@
                   <div class="card-body">
                     <!-- Valor dos donativos -->
                       <div class="form-group">
-                        <label for="ValDon">Valor dos donativos</label>
-                        <input type="number" class="form-control" id="ValDon" name="ValDon" placeholder="Insira o valor dos donativos" value="{{ old('ValDon') }}">
-                        @error('ValDon')
-                            <p class="text-danger">{{ $errors->first('ValDon') }} </p>
+                        <label for="valDon">Valor dos donativos</label>
+                        <input type="number" class="form-control" id="valDon" name="valDon" placeholder="Insira o valor dos donativos" value="{{ old('valDon') }}">
+                        @error('valDon')
+                            <p class="text-danger">{{ $errors->first('valDon') }} </p>
                         @enderror
                       </div>
                     <!-- Valor alimentos não perecíveis -->
                     <div class="form-group">
-                        <label for="ValNPer">Valor dos alimentos não perciveis</label>
-                        <input type="number" class="form-control" id="ValNPer" name="ValNPer" placeholder="Insira o valor dos alimentos não percíveis" value="{{ old('ValNPer') }}">
-                        @error('ValNPer')
-                            <p class="text-danger">{{ $errors->first('ValNPer') }} </p>
+                        <label for="valNPer">Valor dos alimentos não perciveis</label>
+                        <input type="number" class="form-control" id="valNPer" name="valNPer" placeholder="Insira o valor dos alimentos não percíveis" value="{{ old('valNPer') }}">
+                        @error('valNPer')
+                            <p class="text-danger">{{ $errors->first('valNPer') }} </p>
                         @enderror
                       </div>
                     <!-- Valor dos consumiveis -->
