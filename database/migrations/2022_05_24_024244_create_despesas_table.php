@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('mes');
             $table->year('ano');
+            $table->double('rendas', 6, 2);
             $table->double('eletrecidade', 6, 2);
             $table->double('agua', 6, 2);
             $table->double('consumiveis', 6, 2);

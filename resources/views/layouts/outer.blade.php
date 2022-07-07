@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">
+                    <a class="nav-link text-white" href="/rotas/show/">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa fa-truck"></i>
                         </div>
@@ -106,9 +106,10 @@
             navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    @foreach ($geral as $gerals)
-                        <h6 class="font-weight-bolder mb-0 text-Refood">{{-- Re-Food --}}Mês: {{ $gerals->mes }}</h6>
+                    {{-- @foreach ($geral as $gerals)
+                        <h6 class="font-weight-bolder mb-0 text-Refood">Mês: {{ $gerals->mes }}</h6>
                     @endforeach
+                     --}}
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('geral', function (Blueprint $table) {
+        Schema::create('gerals', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('mes');
             $table->year('ano');
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('geral');
+        Schema::dropIfExists('gerals');
     }
 };

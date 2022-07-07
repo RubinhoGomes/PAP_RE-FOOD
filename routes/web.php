@@ -53,6 +53,10 @@ Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'upda
 
 Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
 
+//Show Rotas
+Route::get('/rotas/show', [App\Http\Controllers\RotasController::class, 'show']);
+
+
 // Rotas / FrontOffice
 
 

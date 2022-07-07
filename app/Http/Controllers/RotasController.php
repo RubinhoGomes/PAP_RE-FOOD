@@ -84,6 +84,7 @@ class RotasController extends Controller
     {
         //
         $carrinhas = Carrinhas::all(); //Select * from Categorias
+        $rotas = Rotas::all(); //Select * from Categorias
         return view('rotas.show', compact('carrinhas', 'rotas'));
     }
 
@@ -97,6 +98,7 @@ class RotasController extends Controller
     {
         //
         $carrinhas = Carrinhas::all(); //Select * from Categorias
+        $rotas = Rotas::all();
         return view('rotas.edit', compact('carrinhas', 'rotas'));
     }
 
