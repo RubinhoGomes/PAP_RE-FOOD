@@ -39,9 +39,9 @@
                             <div class="card-header p-3 pt-2">
                                 <div
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-truck"></i>
                                 </div>
-                                <div class="text-end pt-1">
+                                <div class="text-end offset-3 pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Total</p>
                                     <h4 class="mb-0">
                                     {{ $rotas->count() }}</h4>
@@ -61,8 +61,8 @@
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
                                     <i class="fas fa-house-user"></i>
                                 </div>
-                                <div class="text-end pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Carrinhas Total</p>
+                                <div class="text-end offset-3 pt-1">
+                                    <p class="text-lg mb-0 text-capitalize">Total da Carrinha Branca</p>
                                     <?php $valorCarrinhaBranca = 0; ?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
@@ -88,11 +88,16 @@
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
                                     <i class="fas fa-people-carry"></i>
                                 </div>
-                                <div class="text-end pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Voluntários</p>
-                                    <?php $total = 0;?>
+                                <div class="text-end offset-3 pt-1">
+                                    <p class="text-lg mb-0 text-capitalize">Total da Carrinha Vermelha</p>
+                                    <?php $valorCarrinhaVermelha = 0;?>
                                     <h4 class="mb-0">
-                                        {{ $total }}
+                                        @foreach ($rotas as $rota)
+                                            @if ($rota->carrinhas_id == 0)
+                                                <?php $valorCarrinhaVermelha++; ?>
+                                            @endif
+                                        @endforeach
+                                        {{ $valorCarrinhaVermelha }}
                                     </h4>
                                 </div>
                             </div>
@@ -110,7 +115,7 @@
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
                                     <i class="fas fa-user-tie"></i>
                                 </div>
-                                <div class="text-end pt-1">
+                                <div class="text-end offset-3 pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Parceiros Sociais</p>
                                     <?php $valorParcS = 0;?>
                                     <h4 class="mb-0">
