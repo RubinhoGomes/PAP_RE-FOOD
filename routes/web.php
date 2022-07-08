@@ -53,11 +53,9 @@ Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'upda
 
 Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
 
+// Rotas / FrontOffice
 //Show Rotas
 Route::get('/rotas/show', [App\Http\Controllers\RotasController::class, 'show']);
-
-
-// Rotas / FrontOffice
 
 
 // ** ** ** ** **
@@ -88,6 +86,8 @@ Route::put('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::
 Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'destroy']);
 
 // Refeições / FrontOffice
+//Show Refeições
+Route::get('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 'show']);
 
 
 // ** ** ** ** **
