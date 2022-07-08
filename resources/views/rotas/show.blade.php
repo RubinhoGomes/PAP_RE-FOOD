@@ -11,16 +11,17 @@
                     <h4 class="text-center">{{ __('Rotas') }}</h4>
                     <div class="row">
                         <div class="form-group col-md-3">
+
                             <label for="mes">Mês</label>
                             <select class="form-control select2" name="mes" id="mes" style="width: 100%;">
                             <option value="DO" selected="selected" disabled>Selecione um mês</option>
                             @foreach ($rotas as $rota)
-
+                            <?php $data = explode("-", $rota->data) ?>
                             @if ($rota->first()->id == $rota->id)
-                            <option value="{{ $rota->id }}" selected>{{ $rota->data }}</option>
+                            <option value="{{ $rota->id }}" selected>{{ $data[0]}}-{{ $data[1] }}</option>
 
                             @else
-                            <option value="{{ $rota->id }}">{{ $rota->data }}</option>
+                            <option value="{{ $rota->id }}">{{ $data[0]}}-{{ $data[1] }}</option>
 
                             @endif
 
@@ -42,7 +43,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total</p>
+                                    <p class="text-lg mb-0 text-capitalize">Total de Rotas</p>
                                     <h4 class="mb-0">
                                     {{ $rotas->count() }}</h4>
                                 </div>
@@ -59,14 +60,14 @@
                             <div class="card-header p-3 pt-2">
                                 <div
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-house-user"></i>
+                                    <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Total da Carrinha Branca</p>
                                     <?php $valorCarrinhaBranca = 0; ?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
-                                            @if ($rota->carrinhas_id == 1)
+                                            @if ($rota->Carrinhas->cor == 'Branca')
                                                 <?php $valorCarrinhaBranca++; ?>
                                             @endif
                                         @endforeach
@@ -86,14 +87,14 @@
                             <div class="card-header p-3 pt-2">
                                 <div
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-people-carry"></i>
+                                    <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Total da Carrinha Vermelha</p>
                                     <?php $valorCarrinhaVermelha = 0;?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
-                                            @if ($rota->carrinhas_id == 0)
+                                            @if ($rota->Carrinhas->cor == 'Vermelha')
                                                 <?php $valorCarrinhaVermelha++; ?>
                                             @endif
                                         @endforeach
@@ -113,13 +114,16 @@
                             <div class="card-header p-3 pt-2">
                                 <div
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-user-tie"></i>
+                                    <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Parceiros Sociais</p>
-                                    <?php $valorParcS = 0;?>
+                                    <p class="text-lg mb-0 text-capitalize">Total Km Percorridos</p>
+                                    <?php $totalKm = 0;?>
                                     <h4 class="mb-0">
-                                        {{-- {{ $rotas->first()->id}} --}}
+                                        @foreach ($rotas as $rota)
+                                                <?php $totalKm += ($rota->kmChegada - $rota->kmPartida )?>
+                                        @endforeach
+                                        {{ $totalKm }}
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
@@ -134,12 +138,44 @@
                             <div class="card-header p-3 pt-2">
                                 <div
                                     class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fa fa-apple-alt"></i>
+                                    <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Fontes de Alimentos</p>
+                                    <p class="text-lg mb-0 text-capitalize">Total Km Carrinha Branca</p>
+                                    <?php $totalKm = 0;?>
                                     <h4 class="mb-0">
-                                        {{-- {{ $rotas->first()->numFontesAlimentos }} --}}
+                                        @foreach ($rotas as $rota)
+                                            @if ($rota->Carrinhas->cor == 'Branca')
+                                                <?php $totalKm += ($rota->kmChegada - $rota->kmPartida )?>
+                                            @endif
+                                        @endforeach
+                                        {{ $totalKm }}
+                                </div>
+                            </div>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                                    </span>than yesterday</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                        <div class="card">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <div class="text-end offset-3 pt-1">
+                                    <p class="text-lg mb-0 text-capitalize">Total Km Carrinha Vermelha</p>
+                                    <?php $totalKm = 0;?>
+                                    <h4 class="mb-0">
+                                        @foreach ($rotas as $rota)
+                                            @if ($rota->Carrinhas->cor == 'Vermelha')
+                                                <?php $totalKm += ($rota->kmChegada - $rota->kmPartida )?>
+                                            @endif
+                                        @endforeach
+                                        {{ $totalKm }}
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
