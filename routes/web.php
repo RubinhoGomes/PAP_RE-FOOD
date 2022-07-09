@@ -87,6 +87,7 @@ Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesControlle
 
 // Refeições / FrontOffice
 //Show Refeições
+
 Route::get('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 'show']);
 
 
@@ -118,7 +119,9 @@ Route::put('/donativos/{donativos}', [App\Http\Controllers\DonativosController::
 Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'destroy']);
 
 // Donativos / FrontOffice
+//Show Donativos
 
+Route::get('/donativos/show', [App\Http\Controllers\DonativosController::class, 'show']);
 
 // ** ** ** ** **
 

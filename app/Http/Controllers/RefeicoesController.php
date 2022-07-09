@@ -70,7 +70,7 @@ class RefeicoesController extends Controller
     public function show(Refeicoes $refeicoes)
     {
         //
-        $refeicoes = Refeicoes::all(); //Select * from Categorias
+        $refeicoes = Refeicoes::all();
         return view('refeicoes.show', compact('refeicoes'));
     }
 

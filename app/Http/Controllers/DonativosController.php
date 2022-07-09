@@ -69,7 +69,8 @@ class DonativosController extends Controller
      */
     public function show(Donativos $donativos)
     {
-        //
+        $donativos = Donativos::all();
+        return view('donativos.show', compact('donativos'));
     }
 
     /**
