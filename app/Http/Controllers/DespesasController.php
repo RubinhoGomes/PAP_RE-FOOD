@@ -76,6 +76,8 @@ class DespesasController extends Controller
     public function show(Despesas $despesas)
     {
         //
+        $despesas = Despesas::all();
+        return view('despesas.show', compact('despesas'));
     }
 
     /**

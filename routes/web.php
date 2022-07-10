@@ -151,3 +151,6 @@ Route::put('/despesas/{despesas}', [App\Http\Controllers\DespesasController::cla
 Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'destroy']);
 
 // Despesas / FrontOffice
+//Show Despesas
+
+Route::get('/despesas/show', [App\Http\Controllers\DespesasController::class, 'show']);
