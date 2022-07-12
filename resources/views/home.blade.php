@@ -144,6 +144,48 @@
             </div>
         </div>
 
+        <form role="form" method="post" action="/grafico" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="ano">Ano: </label>
+                </div>
+                <div class="form-group col-md-2">
+                <select class="form-control select2" name="ano" id="ano" style="width: 100%;">
+                <option value="DO" selected="selected" disabled>Selecione um Ano</option>
+                @for ($i = 1912; $i <= date("Y"); $i++)
+                <option value="{{ $i }}">{{ $i }}</option>
+                @endfor ($rotas as $rota)
+
+                </select>
+                @error('ano')
+                <p class="text-danger">{{ $errors->ano }} </p>
+                @enderror
+            </div>
+            {{-- <div class="row">
+                <div class="col-md-1">
+                    <label for="mes">Mes: </label>
+                </div>
+                <div class="form-group col-md-2">
+                <select class="form-control select2" name="mes" id="mes" style="width: 100%;">
+                <option value="DO" selected="selected" disabled>Selecione um mês</option>
+                @for ($i = 1; $i <= 12.2; $i++)
+                <option value="{{ $i }}">{{ $i }}</option>
+                @endfor ($rotas as $rota)
+
+                </select>
+                @error('mes')
+                <p class="text-danger">{{ $errors->mes }} </p>
+                @enderror
+            </div> --}}
+            <div class="row">
+                <div class="col-sm-3 text-center">
+                    <input class="btn btn-primary" type="submit" name="submit" value="Visualizar grafico">
+                </div>
+            </div>
+        </form>
+
+
         {{-- <div class="row mt-4">
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2 ">

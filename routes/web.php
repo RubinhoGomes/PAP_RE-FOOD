@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('home', compact('geral'));
 });
 
+Route::post('/grafico', function () {
+    $geral = Geral::all();
+    return view('home.graphs', compact('geral'));
+});
+
 Auth::routes();
 
 // DashBoard / BackOffice
@@ -29,7 +34,6 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 // ** ** ** ** **
 
 // Rotas / BackOffice
-// Rotas Listar
 
 Route::get('/rotas', [App\Http\Controllers\RotasController::class, 'index'])->name('rotas');
 
@@ -56,6 +60,9 @@ Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'd
 // Rotas / FrontOffice
 //Show Rotas
 Route::get('/rotas/show', [App\Http\Controllers\RotasController::class, 'show']);
+
+//Mostrar Grafico Rotas
+Route::post('/rotas/rotas/', [App\Http\Controllers\RotasController::class, 'indexGraphs'])->name('rotasGraphs');
 
 
 // ** ** ** ** **
@@ -90,6 +97,10 @@ Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesControlle
 
 Route::get('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 'show']);
 
+//Mostrar Grafico Refeicoes
+Route::post('/refeicoes/refeicoes/', [App\Http\Controllers\RefeicoesController::class, 'indexGraphs'])->name('refeicoesGraphs');
+
+
 
 // ** ** ** ** **
 
@@ -123,6 +134,11 @@ Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosControlle
 
 Route::get('/donativos/show', [App\Http\Controllers\DonativosController::class, 'show']);
 
+//Mostrar Grafico Donativos
+Route::post('/donativos/donativos/', [App\Http\Controllers\DonativosController::class, 'indexGraphs'])->name('donativosGraphs');
+
+
+
 // ** ** ** ** **
 
 // Despesas / BackOffice
@@ -154,3 +170,6 @@ Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::
 //Show Despesas
 
 Route::get('/despesas/show', [App\Http\Controllers\DespesasController::class, 'show']);
+
+//Mostrar Grafico Rotas
+Route::post('/despesas/despesas/', [App\Http\Controllers\DespesasController::class, 'indexGraphs'])->name('despesasGraphs');

@@ -6,6 +6,8 @@ use App\Models\Carrinhas;
 use App\Models\Rotas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class RotasController extends Controller
 {
@@ -20,6 +22,14 @@ class RotasController extends Controller
 
         $rotas = Rotas::all(); // Select * from rotas
         return view('rotas.index', compact('rotas'));
+    }
+
+    public function indexGraphs()
+    {
+        // Selecionar os vários valores da base de dados
+
+        $rotas = DB::select(DB::raw("SELECT count(id), carrinhas_id,EXTRACT(YEAR FROM rotas.data), EXTRACT(MONTH FROM rotas.data), sum(kmChegada) - sum(kmPartida) FROM refood.rotas GROUP BY month(data), carrinhas_id;"));
+        return view('rotas.rotas', compact('rotas'));
     }
 
     /**

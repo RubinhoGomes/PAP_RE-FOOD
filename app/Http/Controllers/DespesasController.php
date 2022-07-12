@@ -19,6 +19,13 @@ class DespesasController extends Controller
         return view('despesas.index', compact('despesas'));
     }
 
+    public function indexGraphs()
+    {
+        //Selecionar todos os valores da base de dados
+        $despesas = Despesas::all();
+        return view('despesas.despesas', compact('despesas'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

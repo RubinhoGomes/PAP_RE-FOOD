@@ -2,164 +2,146 @@
 
 @section('content')
 
-<div class="container">
-    <div class="rowjustify-content-center ">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
+<?php
 
-                    <h4 class="text-center">{{ __('Administração') }}</h4>
-                    <div class="row">
-                        <div class="form-group col-md-2">
-                            <label for="mes">Mês</label>
-                            <select class="form-control select2" name="mes" id="mes" style="width: 100%;">
-                            <option value="DO" selected="selected" disabled>Selecione um mês</option>
-                            @foreach ($geral as $gerals)
+// if (isset() && isset()) {
+//     # code...
+// }
 
-                            @if ($gerals->id == $gerals->first()->id)
-                            <option value="{{ $gerals->id }}" selected>{{ $gerals->mes }}/{{ $gerals->ano }}</option>
-                            @else
-                            <option value="{{ $gerals->id }}">{{ $gerals->mes }}/{{ $gerals->ano }}</option>
-                            @endif
+?>
+<div class="card">
+    <div class="card-header">
 
-                            @endforeach
-                            </select>
-                            @error('mes')
-                            <p class="text-danger">{{ $errors->first('mes') }} </p>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
+        <h4 class="text-center">{{ __('Rotas') }}</h4>
+        <div class="row">
+            @if(isset($_POST['ano']))
+                <?php $j=0; $i = -1?>
+                    @while ($i <= 0)
+                        @if ($rotas[$j]->id != null)
+                            <?php
+                                $data = explode("-", $rotas[$j]->data);
+                            ?>
+                        @endif
 
-                <div class="row">
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-header p-3 pt-2">
-                                <div
-                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="text-end pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Beneficiários</p>
-                                    <h4 class="mb-0">
-                                    {{ $geral->first()->numBeneficiarios }}</h4>
-                                </div>
-                            </div>
-                            <hr class="dark horizontal my-0">
-                            <div class="card-footer p-3">
-                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3%
-                                    </span>than lask month</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-header p-3 pt-2">
-                                <div
-                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-house-user"></i>
-                                </div>
-                                <div class="text-end pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Famílias</p>
-                                    <?php $valorFam = 0;?>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numFamilias }}
-                                    </h4>
-                                </div>
-                            </div>
-                            <hr class="dark horizontal my-0">
-                            <div class="card-footer p-3">
-                                {{-- <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                    than yesterday</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-header p-3 pt-2">
-                                <div
-                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-people-carry"></i>
-                                </div>
-                                <div class="text-end pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Voluntários</p>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numVoluntarios}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <hr class="dark horizontal my-0">
-                            <div class="card-footer p-3">
-                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55%
-                                    </span>than lask week</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-header p-3 pt-2">
-                                <div
-                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fas fa-user-tie"></i>
-                                </div>
-                                <div class="text-end pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Parceiros Sociais</p>
-                                    <?php $valorParcS = 0;?>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numParceirosSociais}}
-                                </div>
-                            </div>
-                            <hr class="dark horizontal my-0">
-                            <div class="card-footer p-3">
-                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                                    </span>than yesterday</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
-                        <div class="card">
-                            <div class="card-header p-3 pt-2">
-                                <div
-                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fa fa-apple-alt"></i>
-                                </div>
-                                <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Fontes de Alimentos</p>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numFontesAlimentos }}
-                                </div>
-                            </div>
-                            <hr class="dark horizontal my-0">
-                            <div class="card-footer p-3">
-                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                                    </span>than yesterday</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
-                        <div class="card">
-                            <div class="card-header p-3 pt-2">
-                                <div
-                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                    <i class="fa fa-handshake"></i>
-                                </div>
-                                <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Associações Parceiras</p>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numAssociacoesParceiras }}
-                                </div>
-                            </div>
-                            <hr class="dark horizontal my-0">
-                            <div class="card-footer p-3">
-                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                                    </span>than yesterday</p> --}}
+                    @if ($data[0] == $_POST['ano'])
+                        <?php
+                            $i = $j;
+                            break;
+                        ?>
+                    @endif
+                    <?php $j++; ?>
+                @endwhile
+
+                @for ($x = 0; $x <= 11; $x++)
+                <?php
+                    $valores[$x] = ($rotas[$i]->kmChegada - $rotas[$i]->kmPartida);
+                    $i++;
+                ?>
+                @endfor
+            @endif
+
+            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2 ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-bars" class="chart-canvas" height="200"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
+
 </div>
 
+<script src="/assets/js/plugins/chartjs.min.js"></script>
+<script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            datasets: [{
+                label: "Sales",
+                tension: 0.4,
+                borderWidth: 0,
+                borderRadius: 4,
+                borderSkipped: false,
+                backgroundColor: "rgba(255, 255, 255, .8)",
+                data: [<?php echo join(',', $valores); ?>],
+                maxBarThickness: 6
+            }, ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false,
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
+                    },
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 500,
+                        beginAtZero: true,
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                        color: "#fff"
+                    },
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: 'rgba(255, 255, 255, .2)'
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#f8f9fa',
+                        padding: 10,
+                        font: {
+                            size: 14,
+                            weight: 300,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+</script>
+
+
+
 @endsection
+

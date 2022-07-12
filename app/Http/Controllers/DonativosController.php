@@ -19,6 +19,13 @@ class DonativosController extends Controller
         return view('donativos.index', compact('donativos'));
     }
 
+    public function indexGraphs()
+    {
+        // Buscar dados a base de dados
+        $donativos = Donativos::all(); //Select * from Donativos
+        return view('donativos.donativos', compact('donativos'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

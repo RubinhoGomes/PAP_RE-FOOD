@@ -19,6 +19,14 @@ class RefeicoesController extends Controller
         return view('refeicoes.index', compact('refeicoes'));
     }
 
+    public function indexGraphs()
+    {
+        // Buscar dados a base de dados
+        $refeicoes = Refeicoes::all(); // Select * from Refeições
+        return view('refeicoes.refeicoes', compact('refeicoes'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
