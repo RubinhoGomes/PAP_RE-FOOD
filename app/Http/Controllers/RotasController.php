@@ -28,7 +28,7 @@ class RotasController extends Controller
     {
         // Selecionar os vários valores da base de dados
 
-        $rotas = DB::select(DB::raw("SELECT count(id), carrinhas_id,EXTRACT(YEAR FROM rotas.data), EXTRACT(MONTH FROM rotas.data), sum(kmChegada) - sum(kmPartida) FROM refood.rotas GROUP BY month(data), carrinhas_id;"));
+        $rotas = Rotas::select(DB::RAW('id, carrinhas_id, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida'))->groupBy(DB::RAW('MONTH(rotas.data), YEAR(rotas.data), carrinhas_id'))->get();
         return view('rotas.rotas', compact('rotas'));
     }
 
