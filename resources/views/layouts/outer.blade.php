@@ -35,7 +35,6 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="/assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/css/style.css">
-
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -106,10 +105,6 @@
             navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    {{-- @foreach ($geral as $gerals)
-                        <h6 class="font-weight-bolder mb-0 text-Refood">Mês: {{ $gerals->mes }}</h6>
-                    @endforeach
-                     --}}
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -135,6 +130,15 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                            {{ __('Administração') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('register') }}">
+                                            {{ __('Registrar') }}
+                                        </a>
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">

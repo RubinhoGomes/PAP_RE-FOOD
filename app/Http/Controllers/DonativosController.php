@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donativos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DonativosController extends Controller
 {
@@ -15,14 +16,14 @@ class DonativosController extends Controller
     public function index()
     {
         // Buscar dados a base de dados
-        $donativos = Donativos::all(); //Select * from Donativos
+        $donativos = DB::table('donativos')->orderByRaw('id DESC')->get(); // Select * from Donativos
         return view('donativos.index', compact('donativos'));
     }
 
     public function indexGraphs()
     {
         // Buscar dados a base de dados
-        $donativos = Donativos::all(); //Select * from Donativos
+        $donativos = Donativos::select(DB::RAW("donativos.id, count(id) AS totalDon, donativos.mes, donativos.ano, donativos.valorDinheiro, donativos.valorNaoPerciveis, donativos.valorConsumiveis"))->groupBy('id')->get(); // Select * from Refeições
         return view('donativos.donativos', compact('donativos'));
     }
 

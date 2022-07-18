@@ -6,31 +6,14 @@
     <div class="rowjustify-content-center ">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h4 class="text-center">{{ __('Refeições') }}</h4>
-                    </div>
+                <div class="card-header">
+                    <h4 class="text-center">{{ __('Refeições') }}</h4>
                     <div class="row">
-                        <div class="form-group col-md-3">
-                            <label for="mes">Mês: </label>
-                            <select class="form-control-sm" name="mes" id="mes" style="width: 50%;">
-                            <option value="DO" selected="selected" disabled>Selecione um mês</option>
-                            @foreach ($refeicoes as $refeicao)
-                                @if ($refeicao->first()->id == $refeicao->id)
-
-                                    <option value="{{ $refeicao->id }}" selected>{{ $refeicao->mes }}-{{ $refeicao->ano }}</option>
-
-                                @else
-
-                                    <option value="{{ $refeicao->id }}">{{ $refeicao->mes }}-{{ $refeicao->ano }}</option>
-
-                                @endif
-                            @endforeach
-
-                            </select>
-                            @error('mes')
-                            <p class="text-danger">{{ $errors->mes }} </p>
-                            @enderror
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                    <p>Mês: {{ $refeicoes->first()->mes }}/{{ $refeicoes->first()->ano }}</p>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,39 +125,23 @@
                     </div>
                 </div>
                 <form role="form" method="post" action="/refeicoes/refeicoes" enctype="multipart/form-data">
-                    @csrf
+                    {{ csrf_field() }} {{ method_field('POST') }}
                     <div class="row">
-                        <div class="col-md-1">
-                            <label for="ano">Ano: </label>
+                        <div class="col-sm-1">
+                            <div class="mt-2 ml-2">
+                                <label for="ano">Ano: </label>
+                            </div>
                         </div>
-                        <div class="form-group col-md-2">
-                        <select class="form-control select2" name="ano" id="ano" style="width: 100%;">
-                        <option value="DO" selected="selected" disabled>Selecione um Ano</option>
-                        @for ($i = 1912; $i <= date("Y"); $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor ($rotas as $rota)
-
-                        </select>
-                        @error('ano')
-                        <p class="text-danger">{{ $errors->ano }} </p>
-                        @enderror
+                        <div class="col-sm-3">
+                        <div class="form-group">
+                            <select class="form-control select2" name="ano" id="ano" style="width: 100%;">
+                            <option value="DO" selected="selected" disabled>Selecione um Ano</option>
+                            @for ($i = 2016; $i <= date("Y"); $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor ($rotas as $rota)
+                            </select>
+                        </div>
                     </div>
-                    {{-- <div class="row">
-                        <div class="col-md-1">
-                            <label for="mes">Mes: </label>
-                        </div>
-                        <div class="form-group col-md-2">
-                        <select class="form-control select2" name="mes" id="mes" style="width: 100%;">
-                        <option value="DO" selected="selected" disabled>Selecione um mês</option>
-                        @for ($i = 1; $i <= 12.2; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                        @endfor ($rotas as $rota)
-
-                        </select>
-                        @error('mes')
-                        <p class="text-danger">{{ $errors->mes }} </p>
-                        @enderror
-                    </div> --}}
                     <div class="row">
                         <div class="col-sm-3 text-center">
                             <input class="btn btn-primary" type="submit" name="submit" value="Visualizar grafico">

@@ -14,40 +14,44 @@
 
         <h4 class="text-center">{{ __('Donativos') }}</h4>
         <div class="row">
-            <?php
-                $valoresDin[] = 0;
-                $valoresNPer[] = 0;
-                $valoresCon[] = 0;
+            <?php $valoresDin[] = 0; $valoresNPer[] = 0; $valoresCon[] = 0; ?>
+            @for ($i = 1; $i <= 12; $i++)
+                <?php
+                    foreach ($donativos as $d ) {
+                        if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes == $i){
 
-            ?>
-            @if(isset($_POST['ano']))
-                <?php $j=0; $i = -1?>
-                    @while ($i <= -1)
-                        @if ($donativos[$j]->id != null && $donativos[$j]->ano == $_POST['ano'])
-                        <?php
-                            $i = $j;
-                            break;
-                         ?>
-                        @endif
-                        @if ($j == ($donativos->last()->id))
-                            <?php
-                                $i = 1;
-                                break;
-                            ?>
-                        @endif
-                    <?php $j++; ?>
-                @endwhile
-                @if ($donativos[$i]->ano == $_POST['ano'])
-                    @for ($x = 0; $x <= 11; $x++)
-                    <?php
-                        $valoresDin[$x] = $donativos[$i]->valorDinheiro;
-                        $valoresNPer[$x] = $donativos[$i]->valorNaoPerciveis;
-                        $valoresCon[$x] = $donativos[$i]->valorConsumiveis;
-                        $i++;
-                    ?>
-                @endfor
-                @endif
-            @endif
+                            if(empty($valoresDin[$i])){
+                                $valoresDin[$i] = $d->valorDinheiro;
+                            } else if(!empty($valoresDin[$i])){
+                                $valoresDin[$i] += $d->valorDinheiro;
+                            }
+
+                            if(empty($valoresNPer[$i])){
+                                $valoresNPer[$i] = $d->valorNaoPerciveis;
+                            } else if(!empty($valoresNPer[$i])){
+                                $valoresNPer[$i] += $d->valorNaoPerciveis;
+                            }
+
+                            if(empty($valoresCon[$i])){
+                                $valoresCon[$i] = $d->valorConsumiveis;
+                            } else if(!empty($valoresCon[$i])){
+                                $valoresCon[$i] += $d->valorConsumiveis;
+                            }
+
+                        }
+                        if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresDin[$i])){
+                            $valoresDin[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresNPer[$i])){
+                            $valoresNPer[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresCon[$i])){
+                            $valoresCon[$i] = 0;
+                        }
+                    }
+                ?>
+            @endfor
+            <?php array_shift($valoresDin); array_shift($valoresNPer); array_shift($valoresCon); ?>
 
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">

@@ -8,7 +8,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title text-center">Nova Rota</h3>
+                <h3 class="card-title text-center">Registar Dados da Rota</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -16,43 +16,58 @@
                   @csrf
 
                   <div class="card-body">
-                    <!-- Motorista -->
-                    <div class="form-group">
-                      <label for="motorista">Motorista</label>
-                      <input type="text" class="form-control" id="motorista" name="motorista" placeholder="Insira o nome do motirsta" value="{{ old('motorista') }}">
-                      @error('motorista')
-                          <p class="text-danger">{{ $errors->first('motorista') }} </p>
-                      @enderror
+
+                    <div class="row">
+
+                       <!-- Data -->
+                        <div class="form-group">
+                        <label for="data">Data</label>
+                        <input type="date" class="form-control" id="data" name="data" value="{{ date("Y-m-d") }}">
+                        @error('data')
+                            <p class="text-danger">{{ $errors->first('data') }} </p>
+                        @enderror
                     </div>
 
-                    <!-- Carrinhas -->
-                    <div class="form-group">
-                        <label for="carrinhas">Carrinhas</label>
-                        <select class="form-control select2" name="carrinhas" id="carrinhas" style="width: 100%;">
-                          <option value="DO" selected="selected" disabled>Selecione uma Carrinnha</option>
-                          @foreach ($carrinhas as $car)
+                <!-- Motorista -->
+                <div class="form-group">
+                  <label for="motorista">Voluntário</label>
+                  <input type="text" class="form-control" id="motorista" name="motorista" placeholder="Insira o nome do motirsta" value="{{ old('motorista') }}">
+                  @error('motorista')
+                      <p class="text-danger">{{ $errors->first('motorista') }} </p>
+                  @enderror
+                </div>
 
-                          @if (old('carrinhas') == $car->id)
-                          <option value="{{ $car->id }}" selected>{{ $car->marca }} {{ $car->modelo }} ({{ $car->cor }})</option>
-                          @else
-                          <option value="{{ $car->id }}">{{ $car->marca }} {{ $car->modelo }} ({{ $car->cor }})</option>
-                          @endif
+                <!-- Carrinhas -->
+                <div class="form-group">
+                    <label for="carrinhas">Carrinhas</label>
+                    <select class="form-control select2" name="carrinhas" id="carrinhas" style="width: 100%;">
+                      <option value="DO" selected="selected" disabled>Selecione uma Carrinha</option>
+                      @foreach ($carrinhas as $car)
 
-                          @endforeach
-                        </select>
-                        @error('carrinhas')
-                        <p class="text-danger">{{ $errors->first('carrinhas') }} </p>
-                        @enderror
-                      </div>
+                      @if (old('carrinhas') == $car->id)
+                      <option value="{{ $car->id }}" selected>{{ $car->marca }} {{ $car->modelo }} ({{ $car->cor }})</option>
+                      @else
+                      <option value="{{ $car->id }}">{{ $car->marca }} {{ $car->modelo }} ({{ $car->cor }})</option>
+                      @endif
 
-                    <!-- Número da Rota -->
-                      <div class="form-group">
-                        <label for="numRota">Número da Rota</label>
-                        <input type="number" class="form-control" id="numRota" name="numRota" placeholder="Insira o número da rota" min="0" max="7" value="{{ old('numRota') }}">
-                        @error('numRota')
-                            <p class="text-danger">{{ $errors->first('numRota') }} </p>
-                        @enderror
-                      </div>
+                      @endforeach
+                    </select>
+                    @error('carrinhas')
+                    <p class="text-danger">{{ $errors->first('carrinhas') }} </p>
+                    @enderror
+                  </div>
+
+                <!-- Número da Rota -->
+                  <div class="form-group">
+                    <label for="numRota">Número da Rota</label>
+                    <input type="number" class="form-control" id="numRota" name="numRota" placeholder="Insira o número da rota" min="0" max="7" value="{{ old('numRota') }}">
+                    @error('numRota')
+                        <p class="text-danger">{{ $errors->first('numRota') }} </p>
+                    @enderror
+                  </div>
+
+                    </div>
+
 
                    <!-- KmPartida -->
                       <div class="form-group">
@@ -88,16 +103,6 @@
                         <input type="time" class="form-control" id="horaChegada" name="horaChegada" value="{{ old('horaChegada') }}">
                         @error('horaChegada')
                              <p class="text-danger">{{ $errors->first('horaChegada') }} </p>
-                        @enderror
-                    </div>
-
-
-                   <!-- Data -->
-                    <div class="form-group">
-                        <label for="data">Data</label>
-                        <input type="date" class="form-control" id="data" name="data" value="{{ old('data') }}">
-                        @error('data')
-                             <p class="text-danger">{{ $errors->first('data') }} </p>
                         @enderror
                     </div>
 

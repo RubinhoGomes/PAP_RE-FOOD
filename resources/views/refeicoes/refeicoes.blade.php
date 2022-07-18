@@ -14,44 +14,62 @@
 
         <h4 class="text-center">{{ __('Refeições') }}</h4>
         <div class="row">
-            <?php
-                $valoresRef[] = 0;
-                $valoresBen[] = 0;
-                $valoresAssR[] = 0;
-                $valoresAssPeB[] = 0;
-                $valoresAlimS[] = 0;
+            <?php $valoresRef[] = 0;$valoresBen[] = 0;$valoresAssR[] = 0;$valoresAssPeB[] = 0;$valoresAlimS[] = 0;?>
+            @for ($i = 1; $i <= 12; $i++)
+                <?php
+                    foreach ($refeicoes as $r ) {
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes == $i){
 
-            ?>
-            @if(isset($_POST['ano']))
-                <?php $j=0; $i = -1?>
-                    @while ($i <= -1)
-                        @if ($refeicoes[$j]->id != null && $refeicoes[$j]->ano == $_POST['ano'])
-                        <?php
-                            $i = $j;
-                            break;
-                         ?>
-                        @endif
-                        @if ($j == ($refeicoes->last()->id - 1))
-                            <?php
-                                $i = 1;
-                                break;
-                            ?>
-                        @endif
-                    <?php $j++; ?>
-                @endwhile
-                @if ($refeicoes[$i]->ano == $_POST['ano'])
-                    @for ($x = 0; $x <= 11; $x++)
-                    <?php
-                        $valoresRef[$x] = (int) floor($refeicoes[$i]->kgBenefeciarios);
-                        $valoresBen[$x] = $refeicoes[$i]->kgBenefeciarios;
-                        $valoresAssR[$x] = $refeicoes[$i]->kg2Associacoes;
-                        $valoresAssPeB[$x] = $refeicoes[$i]->kgAssociacoes;
-                        $valoresAlimS[$x] = $valoresBen[$x] + $valoresAssR[$x] + $valoresAssPeB[$x];
-                        $i++;
-                    ?>
-                @endfor
-                @endif
-            @endif
+                            if(empty($valoresRef[$i])){
+                                $valoresRef[$i] = floor($r->kgBenefeciarios);
+                            } else if(!empty($valoresRef[$i])){
+                                $valoresRef[$i] += floor($r->kgBenefeciarios);
+                            }
+
+                            if(empty($valoresBen[$i])){
+                                $valoresBen[$i] = $r->kgBenefeciarios;
+                            } else if(!empty($valoresBen[$i])){
+                                $valoresBen[$i] += $r->kgBenefeciarios;
+                            }
+
+                            if(empty($valoresAssR[$i])){
+                                $valoresAssR[$i] = $r->kgAssociacoes;
+                            } else if(!empty($valoresAssR[$i])){
+                                $valoresAssR[$i] += $r->kgAssociacoes;
+                            }
+
+                            if(empty($valoresAssPeB[$i])){
+                                $valoresAssPeB[$i] = $r->kg2Associacoes;
+                            } else if(!empty($valoresAssPeB[$i])){
+                                $valoresAssPeB[$i] += $r->kg2Associacoes;
+                            }
+
+                            if(empty($valoresAlimS[$i])){
+                                $valoresAlimS[$i] = $r->kgBenefeciarios + $r->kgAssociacoes + $r->kg2Associacoes;
+                            } else if(!empty($valoresAlimS[$i])){
+                                $valoresAlimS[$i] += $r->kgBenefeciarios + $r->kgAssociacoes + $r->kg2Associacoes;
+                            }
+
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresRef[$i])){
+                            $valoresRef[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresBen[$i])){
+                            $valoresBen[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresAssR[$i])){
+                            $valoresAssR[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresAssPeB[$i])){
+                            $valoresAssPeB[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresAlimS[$i])){
+                            $valoresAlimS[$i] = 0;
+                        }
+                    }
+                ?>
+            @endfor
+            <?php array_shift($valoresRef); array_shift($valoresBen); array_shift($valoresAssR); array_shift($valoresAssPeB); array_shift($valoresAlimS);?>
 
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">

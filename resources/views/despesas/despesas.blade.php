@@ -2,63 +2,95 @@
 
 @section('content')
 
-<?php
-
-// if (isset() && isset()) {
-//     # code...
-// }
-
-?>
 <div class="card">
     <div class="card-header">
 
         <h4 class="text-center">{{ __('Despesas') }}</h4>
         <div class="row">
+            <?php $valoresRenda[] = 0; $valoresElet[] = 0; $valoresAgua[] = 0; $valoresCons[] = 0; $valoresManu[] = 0; $valoresEquip[] = 0; $valoresOutros[] = 0; $valoresTotalD[] = 0; ?>
+
+            @for ($i = 1; $i <= 12; $i++)
             <?php
-                $valoresRenda[] = 0;
-                $valoresElet[] = 0;
-                $valoresAgua[] = 0;
-                $valoresCons[] = 0;
-                $valoresManu[] = 0;
-                $valoresEquip[] = 0;
-                $valoresOutros[] = 0;
-                // $valoresCon[] = 0;
-                $valoresTotalD[] = 0;
+                foreach ($despesas as $d ) {
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes == $i){
+
+                        if(empty($valoresRenda[$i])){
+                            $valoresRenda[$i] = $d->rendas;
+                        } else if(!empty($valoresRenda[$i])){
+                            $valoresRenda[$i] += $d->rendas;
+                        }
+
+                        if(empty($valoresElet[$i])){
+                            $valoresElet[$i] = $d->eletrecidade;
+                        } else if(!empty($valoresBen[$i])){
+                            $valoresElet[$i] += $d->eletrecidade;
+                        }
+
+                        if(empty($valoresAgua[$i])){
+                            $valoresAgua[$i] = $d->agua;
+                        } else if(!empty($valoresAgua[$i])){
+                            $valoresAgua[$i] += $d->agua;
+                        }
+
+                        if(empty($valoresCons[$i])){
+                            $valoresCons[$i] = $d->consumiveis;
+                        } else if(!empty($valoresCons[$i])){
+                            $valoresCons[$i] += $d->consumiveis;
+                        }
+
+                        if(empty($valoresManu[$i])){
+                            $valoresManu[$i] = $d->manutencao;
+                        } else if(!empty($valoresManu[$i])){
+                            $valoresManu[$i] += $d->manutencao;
+                        }
+
+                        if(empty($valoresEquip[$i])){
+                            $valoresEquip[$i] = $d->equipamentos;
+                        } else if(!empty($valoresEquip[$i])){
+                            $valoresEquip[$i] += $d->equipamentos;
+                        }
+
+                        if(empty($valoresOutros[$i])){
+                            $valoresOutros[$i] = $d->outras;
+                        } else if(!empty($valoresOutros[$i])){
+                            $valoresOutros[$i] += $d->outras;
+                        }
+
+                        if(empty($valoresTotalD[$i])){
+                            $valoresTotalD[$i] = $d->rendas + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->outras;
+                        } else if(!empty($valoresTotalD[$i])){
+                            $valoresTotalD[$i] += $d->rendas + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->outras;
+                        }
+
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresRenda[$i])){
+                        $valoresRenda[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresElet[$i])){
+                        $valoresElet[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresAgua[$i])){
+                        $valoresAgua[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresCons[$i])){
+                        $valoresCons[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresManu[$i])){
+                        $valoresManu[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresEquip[$i])){
+                        $valoresEquip[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresOutros[$i])){
+                        $valoresOutros[$i] = 0;
+                    }
+                    if(isset($_POST['ano']) && $d->ano == $_POST['ano'] && $d->mes != $i && empty($valoresTotalD[$i])){
+                        $valoresTotalD[$i] = 0;
+                    }
+                }
             ?>
-            @if(isset($_POST['ano']))
-                <?php $j=0; $i = -1?>
-                    @while ($i <= -1)
-                        @if ($despesas[$j]->id != null && $despesas[$j]->ano == $_POST['ano'])
-                        <?php
-                            $i = $j;
-                            break;
-                         ?>
-                        @endif
-                        @if ($j == ($despesas->last()->id))
-                            <?php
-                                $i = 1;
-                                break;
-                            ?>
-                        @endif
-                    <?php $j++; ?>
-                @endwhile
-                @if ($despesas[$i]->ano == $_POST['ano'])
-                    @for ($x = 0; $x <= 11; $x++)
-                    <?php
-                        $valoresRenda[$x] = $despesas[$i]->rendas;
-                        $valoresElet[$x] = $despesas[$i]->eletrecidade;
-                        $valoresAgua[$x] = $despesas[$i]->agua;
-                        $valoresCons[$x] = $despesas[$i]->consumiveis;
-                        $valoresManu[$x] = $despesas[$i]->manutencao;
-                        $valoresEquip[$x] = $despesas[$i]->equipamentos;
-                        $valoresOutros[$x] = $despesas[$i]->outras;
-                        // $valores[$x] = $despesas[$i]->valorNaoPerciveis;
-                        $valoresTotalD[$x] = $valoresRenda[$x] + $valoresElet[$x] + $valoresAgua[$x] + $valoresCons[$x] + $valoresManu[$x] + $valoresEquip[$x] + $valoresOutros[$x];
-                        $i++;
-                    ?>
-                @endfor
-                @endif
-            @endif
+        @endfor
+        <?php array_shift($valoresRenda); array_shift($valoresElet); array_shift($valoresAgua); array_shift($valoresCons); array_shift($valoresManu); array_shift($valoresEquip); array_shift($valoresOutros); array_shift($valoresTotalD);?>
 
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">

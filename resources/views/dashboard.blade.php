@@ -9,23 +9,9 @@
 
                     <h4 class="text-center">{{ __('Administração') }}</h4>
                     <div class="row">
-                        <div class="form-group col-md-2">
-                            <label for="mes">Mês</label>
-                            <select class="form-control select2" name="mes" id="mes" style="width: 100%;">
-                            <option value="DO" selected="selected" disabled>Selecione um mês</option>
-                            @foreach ($geral as $gerals)
-
-                            @if ($gerals->id == $gerals->first()->id)
-                            <option value="{{ $gerals->id }}" selected>{{ $gerals->mes }}/{{ $gerals->ano }}</option>
-                            @else
-                            <option value="{{ $gerals->id }}">{{ $gerals->mes }}/{{ $gerals->ano }}</option>
-                            @endif
-
-                            @endforeach
+                        <div class="form-group col-md-3">
+                                <p>Mês: {{ $geral->first()->mes }}/{{ $geral->first()->ano }}</p>
                             </select>
-                            @error('mes')
-                            <p class="text-danger">{{ $errors->first('mes') }} </p>
-                            @enderror
                         </div>
                     </div>
                 </div>

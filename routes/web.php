@@ -35,6 +35,8 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 // Rotas / BackOffice
 
+// ** ** ** ** **
+
 Route::get('/rotas', [App\Http\Controllers\RotasController::class, 'index'])->name('rotas');
 
 //Criar Rotas
@@ -57,7 +59,10 @@ Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'upda
 
 Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
 
+// ** ** ** ** **
+
 // Rotas / FrontOffice
+
 //Show Rotas
 Route::get('/rotas/show', [App\Http\Controllers\RotasController::class, 'show']);
 
@@ -68,6 +73,9 @@ Route::post('/rotas/rotas/', [App\Http\Controllers\RotasController::class, 'inde
 // ** ** ** ** **
 
 // Refeições / BackOffice
+
+// ** ** ** ** **
+
 // Refeições Listar
 
 Route::get('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'index'])->name('refeicoes');
@@ -92,7 +100,11 @@ Route::put('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::
 
 Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'destroy']);
 
+
+// ** ** ** ** **
+
 // Refeições / FrontOffice
+
 //Show Refeições
 
 Route::get('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 'show']);
@@ -101,10 +113,12 @@ Route::get('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 
 Route::post('/refeicoes/refeicoes/', [App\Http\Controllers\RefeicoesController::class, 'indexGraphs'])->name('refeicoesGraphs');
 
 
-
 // ** ** ** ** **
 
 // Donativos / BackOffice
+
+// ** ** ** ** **
+
 // Donativos Listar
 
 Route::get('/donativos', [App\Http\Controllers\DonativosController::class, 'index'])->name('donativos');
@@ -129,7 +143,11 @@ Route::put('/donativos/{donativos}', [App\Http\Controllers\DonativosController::
 
 Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'destroy']);
 
+
+// ** ** ** ** **
+
 // Donativos / FrontOffice
+
 //Show Donativos
 
 Route::get('/donativos/show', [App\Http\Controllers\DonativosController::class, 'show']);
@@ -138,10 +156,12 @@ Route::get('/donativos/show', [App\Http\Controllers\DonativosController::class, 
 Route::post('/donativos/donativos/', [App\Http\Controllers\DonativosController::class, 'indexGraphs'])->name('donativosGraphs');
 
 
-
 // ** ** ** ** **
 
 // Despesas / BackOffice
+
+// ** ** ** ** **
+
 // Despesas Listar
 
 Route::get('/despesas', [App\Http\Controllers\DespesasController::class, 'index'])->name('despesas');
@@ -166,10 +186,16 @@ Route::put('/despesas/{despesas}', [App\Http\Controllers\DespesasController::cla
 
 Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'destroy']);
 
+
+// ** ** ** ** **
+
 // Despesas / FrontOffice
+
 //Show Despesas
 
 Route::get('/despesas/show', [App\Http\Controllers\DespesasController::class, 'show']);
 
 //Mostrar Grafico Rotas
 Route::post('/despesas/despesas/', [App\Http\Controllers\DespesasController::class, 'indexGraphs'])->name('despesasGraphs');
+
+// ** ** ** ** **

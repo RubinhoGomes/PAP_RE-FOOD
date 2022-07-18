@@ -4,19 +4,18 @@
 
 
     <?php $tViag[] = 0; $totalKm[] = 0; $tViagB[] = 0; $tViagV[] = 0; $tKmB[] = 0; $tKmV[] = 0?>
-        @foreach ($rotas as $r)
-
-        @endforeach
         @for ($i = 1; $i <= 12; $i++)
             @foreach ($rotas as $r)
-                @if ($r->Ano == $_POST['ano'] && $r->Mes == $i)
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes == $i)
                     <?php
+
                         if(empty($totalKm[$i])){
                             $totalKm[$i] = ($r->totalKmChegada - $r->totalKmPartida);
                         }
                         else{
-                            $totalKm[$i] = $totalKm[$i] + ($r->totalKmChegada - $r->totalKmPartida);
+                            $totalKm[$i] += ($r->totalKmChegada - $r->totalKmPartida);
                         }
+
 
                         if(empty($tViag[$i])){
                             $tViag[$i] = $r->totalViag;
@@ -42,14 +41,52 @@
                             $tViagB[$i] += $r->totalViag;
                         } else if($r->Carrinhas->cor == 'Vermelha' && empty($tViagV[$i])){
                             $tViagV[$i] = $r->totalViag;
-                        } else if($r->Carrinhas->cor == 'Branca' && !empty($tViagB[$i])){
+                        } else if($r->Carrinhas->cor == 'Vermelha' && !empty($tViagB[$i])){
                             $tViagV[$i] += $r->totalViag;
                         }
+
                     ?>
                 @endif
+
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes != $i && empty($totalKm[$i]))
+                        <?php
+                            $totalKm[$i] = 0;
+                        ?>
+                @endif
+
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes != $i && empty($tViag[$i]))
+                    <?php
+                        $tViag[$i] = 0;
+                    ?>
+                @endif
+
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes != $i && empty($tKmB[$i]))
+                    <?php
+                        $tKmB[$i] = 0;
+                    ?>
+                @endif
+
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes != $i && empty($tKmV[$i]))
+                    <?php
+                        $tKmV[$i] = 0;
+                    ?>
+                @endif
+
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes != $i && empty($tViagB[$i]))
+                    <?php
+                        $tViagB[$i] = 0;
+                    ?>
+                @endif
+
+                @if (isset($_POST['ano']) && $r->Ano == $_POST['ano'] && $r->Mes != $i && empty($tViagV[$i]))
+                    <?php
+                        $tViagV[$i] = 0;
+                    ?>
+                @endif
+
             @endforeach
         @endfor
-        <?php array_shift($totalKm); array_shift($tViag); array_shift($tViagB); array_shift($tKmB);?>
+        <?php  array_shift($totalKm); array_shift($tViag); array_shift($tViagB); array_shift($tViagV); array_shift($tKmB); array_shift($tKmV); ?>
 <div class="card">
     <div class="card-header">
 

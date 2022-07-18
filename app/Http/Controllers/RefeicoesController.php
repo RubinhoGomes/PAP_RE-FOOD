@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Refeicoes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class RefeicoesController extends Controller
 {
@@ -15,14 +17,14 @@ class RefeicoesController extends Controller
     public function index()
     {
         // Buscar dados a base de dados
-        $refeicoes = Refeicoes::all(); // Select * from Refeições
+        $refeicoes = DB::table('refeicoes')->orderByRaw('id DESC')->get(); // Select * from Refeições
         return view('refeicoes.index', compact('refeicoes'));
     }
 
     public function indexGraphs()
     {
         // Buscar dados a base de dados
-        $refeicoes = Refeicoes::all(); // Select * from Refeições
+        $refeicoes = Refeicoes::select(DB::RAW("id, count(id) AS totalRef, ano, mes, kgAssociacoes, kg2Associacoes, kgBenefeciarios"))->groupBy('id')->get(); // Select * from Refeições
         return view('refeicoes.refeicoes', compact('refeicoes'));
     }
 

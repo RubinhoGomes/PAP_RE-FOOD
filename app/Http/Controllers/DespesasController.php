@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Despesas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DespesasController extends Controller
 {
@@ -15,14 +17,14 @@ class DespesasController extends Controller
     public function index()
     {
         //Selecionar todos os valores da base de dados
-        $despesas = Despesas::all();
+        $despesas = DB::table('despesas')->orderByRaw('id DESC')->get(); // Select * from Despesas
         return view('despesas.index', compact('despesas'));
     }
 
     public function indexGraphs()
     {
         //Selecionar todos os valores da base de dados
-        $despesas = Despesas::all();
+        $despesas = Despesas::select(DB::RAW("despesas.id, count(id) AS totalDesp, despesas.mes, despesas.ano, despesas.rendas, despesas.eletrecidade, despesas.agua, despesas.consumiveis, despesas.manutencao, despesas.equipamentos, despesas.outras"))->groupBy('id')->get(); // Select * from Refeições
         return view('despesas.despesas', compact('despesas'));
     }
 
@@ -49,6 +51,7 @@ class DespesasController extends Controller
         // Guarda na base de dados
 
         Request()->validate([
+            'valRenda' => 'required',
             'valElec' => 'required',
             'valAgua' => 'required',
             'valCons' => 'required',
@@ -60,6 +63,7 @@ class DespesasController extends Controller
         ]);
 
         $despesas = new Despesas();
+        $despesas->rendas = request('valRenda');
         $despesas->eletrecidade = request('valElec'); //vai buscar ao form
         $despesas->agua = request('valAgua');
         $despesas->consumiveis = request('valCons');
@@ -111,6 +115,7 @@ class DespesasController extends Controller
         // Guarda na base de dados
 
         Request()->validate([
+            'valRenda' => 'required',
             'valElec' => 'required',
             'valAgua' => 'required',
             'valCons' => 'required',
@@ -121,6 +126,7 @@ class DespesasController extends Controller
             'ano' => 'required',
         ]);
 
+        $despesas->rendas = request('valRenda');
         $despesas->eletrecidade = request('valElec'); //vai buscar ao form
         $despesas->agua = request('valAgua');
         $despesas->consumiveis = request('valCons');

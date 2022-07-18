@@ -19,8 +19,7 @@ class RotasController extends Controller
     public function index()
     {
         // Selecionar os vários valores da base de dados
-
-        $rotas = Rotas::all(); // Select * from rotas
+        $rotas = Rotas::select(DB::RAW("*"))->orderByRaw('id DESC')->get(); // Select * from rotas
         return view('rotas.index', compact('rotas'));
     }
 
@@ -94,7 +93,8 @@ class RotasController extends Controller
     {
         //
         $carrinhas = Carrinhas::all(); //Select * from Categorias
-        $rotas = Rotas::all(); //Select * from Categorias
+        $rotas = Rotas::select(DB::RAW("*, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida"))->orderByRaw('id DESC')->groupBy(DB::RAW('id, mes'))->get(); // Select * from rotas
+        // $rotas = Rotas::select(DB::RAW('id, carrinhas_id, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida')); //Select * from Categorias
         return view('rotas.show', compact('carrinhas', 'rotas'));
     }
 
@@ -108,7 +108,6 @@ class RotasController extends Controller
     {
         //
         $carrinhas = Carrinhas::all(); //Select * from Categorias
-        $rotas = Rotas::all();
         return view('rotas.edit', compact('carrinhas', 'rotas'));
     }
 

@@ -14,6 +14,7 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-9">Renda</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-9">Eletrecidade</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-9">Agua</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-9">Consumiveis</th>
@@ -28,6 +29,9 @@
                 <tbody>
                     @foreach ($despesas as $despesa)
                     <tr>
+                        <td class="align-middle text-center text-sm">
+                            <span class="text-secondary text-center text-xs font-weight-bold{{-- badge badge-sm bg-gradient-success --}}">{{  $despesa->rendas }}</span>
+                          </td>
                     <td class="align-middle text-center text-sm">
                       <span class="text-secondary text-center text-xs font-weight-bold{{-- badge badge-sm bg-gradient-success --}}">{{  $despesa->eletrecidade }}</span>
                     </td>
