@@ -14,46 +14,71 @@
 
         <h4 class="text-center">{{ __('Visão Geral') }}</h4>
         <div class="row">
-            <?php
-                $valoresBen[] = 0;
-                $valoresFam[] = 0;
-                $valoresVol[] = 0;
-                $valoresFontA[] = 0;
-                $valoresParcS[] = 0;
-                $valoresAssP[] = 0;
-            ?>
-            @if(isset($_POST['ano']))
-                <?php $j=0; $i = -1?>
-                    @while ($i <= -1)
-                        @if ($geral[$j]->id != null && $geral[$j]->ano == $_POST['ano'])
-                        <?php
-                            $i = $j;
-                            break;
-                         ?>
-                        @endif
-                        @if ($j == ($geral->last()->id - 1))
-                            <?php
-                                $i = 1;
-                                break;
-                            ?>
-                        @endif
-                    <?php $j++; ?>
-                @endwhile
-                @if ($geral[$i]->ano == $_POST['ano'])
-                    @for ($x = 0; $x <= 11; $x++)
-                    <?php
-                        $valoresBen[$x] = $geral[$i]->numBeneficiarios;
-                        $valoresFam[$x] = $geral[$i]->numFamilias;
-                        $valoresVol[$x] = $geral[$i]->numVoluntarios;
-                        $valoresFontA[$x] = $geral[$i]->numFontesAlimentos;
-                        $valoresParcS[$x] = $geral[$i]->numParceirosSociais;
-                        $valoresAssP[$x] = $geral[$i]->numAssociacoesParceiras;
-                        $i++;
-                    ?>
-                @endfor
-                @endif
+            <?php $valoresBen[] = 0; $valoresFam[] = 0; $valoresVol[] = 0; $valoresFontA[] = 0; $valoresParcS[] = 0; $valoresAssP[] = 0; ?>
+            @for ($i = 1; $i <= 12; $i++)
+                <?php
+                    foreach ($gerals as $g ) {
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes == $i){
 
-            @endif
+                            if(empty($valoresBen[$i])){
+                                $valoresBen[$i] = $g->numBeneficiarios;
+                            } else if(!empty($valoresBen[$i])){
+                                $valoresBen[$i] += $g->numBeneficiarios;
+                            }
+
+                            if(empty($valoresFam[$i])){
+                                $valoresFam[$i] = $g->numFamilias;
+                            } else if(!empty($valoresFam[$i])){
+                                $valoresFam[$i] += $g->numFamilias;
+                            }
+
+                            if(empty($valoresVol[$i])){
+                                $valoresVol[$i] = $g->numVoluntarios;
+                            } else if(!empty($valoresVol[$i])){
+                                $valoresVol[$i] += $g->numVoluntarios;
+                            }
+
+                            if(empty($valoresFontA[$i])){
+                                $valoresFontA[$i] = $g->numFontesAlimentos;
+                            } else if(!empty($valoresFontA[$i])){
+                                $valoresFontA[$i] += $g->numFontesAlimentos;
+                            }
+
+                            if(empty($valoresParcS[$i])){
+                                $valoresParcS[$i] = $g->numParceirosSociais;
+                            } else if(!empty($valoresParcS[$i])){
+                                $valoresParcS[$i] += $g->numParceirosSociais;
+                            }
+
+                            if(empty($valoresAssP[$i])){
+                                $valoresAssP[$i] = $g->numAssociacoesParceiras;
+                            } else if(!empty($valoresAssP[$i])){
+                                $valoresAssP[$i] += $g->numAssociacoesParceiras;
+                            }
+
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresBen[$i])){
+                            $valoresBen[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresFam[$i])){
+                            $valoresFam[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresVol[$i])){
+                            $valoresVol[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresFontA[$i])){
+                            $valoresParcS[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresParcS[$i])){
+                            $valoresParcS[$i] = 0;
+                        }
+                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresAssP[$i])){
+                            $valoresAssP[$i] = 0;
+                        }
+                    }
+                ?>
+            @endfor
+            <?php array_shift($valoresBen); array_shift($valoresFam); array_shift($valoresVol); array_shift($valoresParcS); array_shift($valoresAssP);?>
 
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2 ">
