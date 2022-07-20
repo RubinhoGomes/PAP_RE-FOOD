@@ -28,6 +28,7 @@ Auth::routes();
 // DashBoard / BackOffice
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::post('/dashboard', [App\Http\Controllers\HomeController::class, 'searchDashboard'])->name('dashboardG');
 
 
 // ** ** ** ** **

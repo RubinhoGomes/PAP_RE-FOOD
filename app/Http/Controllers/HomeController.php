@@ -45,4 +45,18 @@ class HomeController extends Controller
         $geralG = Geral::where('ano', 'LIKE', '%' . $ano . '%')->get();
         return view('home', compact('geral', 'geralG'));
     }
+
+
+    public function searchDashboard()
+    {
+        $mes = request('mes');
+        $ano = request('ano');
+
+        if ($ano == '') {
+            $ano = date('Y') - 1;
+        }
+
+        $geral = Geral::where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        return view('dashboard', compact('geral'));
+    }
 }

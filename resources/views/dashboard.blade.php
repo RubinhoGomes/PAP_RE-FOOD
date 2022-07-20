@@ -8,23 +8,34 @@
                 <div class="card-header">
 
                     <h4 class="text-center">{{ __('Administração') }}</h4>
-                    <div class="row">
-                        <div class="form-group col-md-3">
-                                {{-- <p>Mês: {{ $geral->first()->mes }}/{{ $geral->first()->ano }}</p> --}}
-                            </select>
-                        </div>
+                    <div class="col-lg-2">
+                        <form role="form" method="post" action="/dashboard" enctype="multipart/form-data">
+                            @csrf
+                            <div>
+                                <label for="mes">Escolha um mês:</label>
+                            </div>
+
+                            <div class="">
+                                <select name="mes" id="mes" class="form-select form-select-sm">
+                                    @for ($i = 1; $i <= 12; $i++)
+
+                                    @if ($i == date('m') - 1)
+                                        <option value="{{ $i }}" selected>{{ $i }}</option>
+                                    @else
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                    @endfor
+                                </select>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                        </form>
                     </div>
                 </div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div>
                 <div class="row">
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -47,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -71,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -95,7 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mt-xl-2 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -118,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -141,7 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
