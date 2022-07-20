@@ -20,14 +20,6 @@ class DespesasController extends Controller
         $despesas = DB::table('despesas')->orderByRaw('id DESC')->get(); // Select * from Despesas
         return view('despesas.index', compact('despesas'));
     }
-
-    public function indexGraphs()
-    {
-        //Selecionar todos os valores da base de dados
-        $despesas = Despesas::select(DB::RAW("despesas.id, count(id) AS totalDesp, despesas.mes, despesas.ano, despesas.rendas, despesas.eletrecidade, despesas.agua, despesas.consumiveis, despesas.manutencao, despesas.equipamentos, despesas.outras"))->groupBy('id')->get(); // Select * from Refeições
-        return view('despesas.despesas', compact('despesas'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -88,6 +80,15 @@ class DespesasController extends Controller
     {
         //
         $despesas = Despesas::all();
+        return view('despesas.show', compact('despesas'));
+    }
+
+    public function search(Despesas $despesas)
+    {
+        $mes = request('mes');
+        $ano = request('ano');
+
+        $despesas = Despesas::where('mes', 'LIKE', '%' . $mes . '%');
         return view('despesas.show', compact('despesas'));
     }
 

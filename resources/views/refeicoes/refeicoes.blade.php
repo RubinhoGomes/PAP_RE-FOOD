@@ -71,76 +71,87 @@
             @endfor
             <?php array_shift($valoresRef); array_shift($valoresBen); array_shift($valoresAssR); array_shift($valoresAssPeB); array_shift($valoresAlimS);?>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2  ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-Refeicoes" class="chart-canvas" height="170"></canvas>
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-Refeicoes" class="chart-canvas" height="250"></canvas>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Refeições </h6>
+                            <p class="text-sm "> Comida doada (Em Numero de Refeições)</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h6 class="mb-0 "> Refeições </h6>
-                        <p class="text-sm "> Comida doada (Em Numero de Refeições)</p>
+                </div>
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-Ben" class="chart-canvas" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Beneficiarios </h6>
+                            <p class="text-sm "> Comida doada (Em Quilogramas)</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2  ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-Ben" class="chart-canvas" height="170"></canvas>
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-AssR" class="chart-canvas" height="250"></canvas>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Associações (Refeições) </h6>
+                            <p class="text-sm "> Comida doada (Em Quilogramas)</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h6 class="mb-0 "> Beneficiarios </h6>
-                        <p class="text-sm "> Comida doada (Em Quilogramas)</p>
+                </div>
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-AssPeB" class="chart-canvas" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Associações (Pão e Bolos) </h6>
+                            <p class="text-sm "> Comida doada (Em Quilogramas)</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2  ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-AssR" class="chart-canvas" height="170"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="mb-0 "> Associações (Refeições) </h6>
-                        <p class="text-sm "> Comida doada (Em Quilogramas)</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2  ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-AssPeB" class="chart-canvas" height="170"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="mb-0 "> Associações (Pão e Bolos) </h6>
-                        <p class="text-sm "> Comida doada (Em Quilogramas)</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-AlimS" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-AlimS" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -150,6 +161,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+
 
         </div>
     </div>

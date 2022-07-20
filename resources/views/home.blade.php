@@ -1,39 +1,143 @@
 @extends('layouts.outer')
 
 @section('content')
-    <div class="container-fluid py-4">
+<?php $valoresBen[] = 0; $valoresFam[] = 0; $valoresVol[] = 0; $valoresFontA[] = 0; $valoresParcS[] = 0; $valoresAssP[] = 0; ?>
+@for ($i = 1; $i <= 12; $i++)
+    <?php
+        foreach ($geralG as $g ) {
+            if(isset($_POST['ano']) && $g->mes == $i){
+
+                if(empty($valoresBen[$i])){
+                    $valoresBen[$i] = $g->numBeneficiarios;
+                } else if(!empty($valoresBen[$i])){
+                    $valoresBen[$i] += $g->numBeneficiarios;
+                }
+
+                if(empty($valoresFam[$i])){
+                    $valoresFam[$i] = $g->numFamilias;
+                } else if(!empty($valoresFam[$i])){
+                    $valoresFam[$i] += $g->numFamilias;
+                }
+
+                if(empty($valoresVol[$i])){
+                    $valoresVol[$i] = $g->numVoluntarios;
+                } else if(!empty($valoresVol[$i])){
+                    $valoresVol[$i] += $g->numVoluntarios;
+                }
+
+                if(empty($valoresFontA[$i])){
+                    $valoresFontA[$i] = $g->numFontesAlimentos;
+                } else if(!empty($valoresFontA[$i])){
+                    $valoresFontA[$i] += $g->numFontesAlimentos;
+                }
+
+                if(empty($valoresParcS[$i])){
+                    $valoresParcS[$i] = $g->numParceirosSociais;
+                } else if(!empty($valoresParcS[$i])){
+                    $valoresParcS[$i] += $g->numParceirosSociais;
+                }
+
+                if(empty($valoresAssP[$i])){
+                    $valoresAssP[$i] = $g->numAssociacoesParceiras;
+                } else if(!empty($valoresAssP[$i])){
+                    $valoresAssP[$i] += $g->numAssociacoesParceiras;
+                }
+
+            }
+            if(!isset($_POST['ano']) && $g->mes == $i){
+                if(empty($valoresBen[$i])){
+                    $valoresBen[$i] = $g->numBeneficiarios;
+                } else if(!empty($valoresBen[$i])){
+                    $valoresBen[$i] += $g->numBeneficiarios;
+                }
+
+                if(empty($valoresFam[$i])){
+                    $valoresFam[$i] = $g->numFamilias;
+                } else if(!empty($valoresFam[$i])){
+                    $valoresFam[$i] += $g->numFamilias;
+                }
+
+                if(empty($valoresVol[$i])){
+                    $valoresVol[$i] = $g->numVoluntarios;
+                } else if(!empty($valoresVol[$i])){
+                    $valoresVol[$i] += $g->numVoluntarios;
+                }
+
+                if(empty($valoresFontA[$i])){
+                    $valoresFontA[$i] = $g->numFontesAlimentos;
+                } else if(!empty($valoresFontA[$i])){
+                    $valoresFontA[$i] += $g->numFontesAlimentos;
+                }
+
+                if(empty($valoresParcS[$i])){
+                    $valoresParcS[$i] = $g->numParceirosSociais;
+                } else if(!empty($valoresParcS[$i])){
+                    $valoresParcS[$i] += $g->numParceirosSociais;
+                }
+
+                if(empty($valoresAssP[$i])){
+                    $valoresAssP[$i] = $g->numAssociacoesParceiras;
+                } else if(!empty($valoresAssP[$i])){
+                    $valoresAssP[$i] += $g->numAssociacoesParceiras;
+                }
+            }
+            if($g->mes != $i && empty($valoresBen[$i])){
+                    $valoresBen[$i] = 0;
+            }
+            if($g->mes != $i && empty($valoresFam[$i])){
+                $valoresFam[$i] = 0;
+            }
+            if($g->mes != $i && empty($valoresVol[$i])){
+                $valoresVol[$i] = 0;
+            }
+            if($g->mes != $i && empty($valoresFontA[$i])){
+                $valoresFontA[$i] = 0;
+            }
+            if($g->mes != $i && empty($valoresParcS[$i])){
+                $valoresParcS[$i] = 0;
+            }
+            if($g->mes != $i && empty($valoresAssP[$i])){
+                $valoresAssP[$i] = 0;
+            }
+        }
+    ?>
+@endfor
+<?php array_shift($valoresBen); array_shift($valoresFam); array_shift($valoresVol); array_shift($valoresFontA); array_shift($valoresParcS); array_shift($valoresAssP);?>
+
+<div class="container-fluid py-4">
+        <h4 class="text-center">
+            Visão Geral
+        </h4>
         <div class="row mt-2 mb-2">
-            <div class="form-group col-md-3">
-                    <p>Mês: {{ $geral->first()->mes }}/{{ $geral->first()->ano }}</p>
-                </select>
+            <div class="form-group">
+                    <div class="col-lg-2">
+                        <form role="form" method="post" action="/" enctype="multipart/form-data">
+                            @csrf
+                            <div>
+                                <label for="mes">Escolha um mês:</label>
+                            </div>
+
+                            <div class="">
+                                <select name="mes" id="mes" class="form-select form-select-sm">
+                                    @for ($i = 1; $i <= 12; $i++)
+
+                                    @if ($i == date('m') - 1)
+                                        <option value="{{ $i }}" selected>{{ $i }}</option>
+                                    @else
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                    @endfor
+                                </select>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                        </form>
+                    </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-header p-3 pt-2">
-                        <div
-                            class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <div class="text-end pt-1">
-                            <p class="text-lg mb-0 text-capitalize">Associações</p>
-                            <?php $valorAssoc = 0;?>
-                            <h4 class="mb-0"> @foreach ($geral as $gerals)
-                                <?php  $valorAssoc += $gerals->numAssociacoesParceiras?>
-                                @endforeach
-                                {{ $valorAssoc }}
-                            </h4>
-                        </div>
-                    </div>
-                    <hr class="dark horizontal my-0">
-                    <div class="card-footer p-3">
-                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55%
-                            </span>than lask week</p> --}}
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-header p-3 pt-2">
                         <div
@@ -56,7 +160,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-header p-3 pt-2">
                         <div
@@ -69,7 +173,7 @@
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorFam += $gerals->numFamilias?>
                                 @endforeach
-                                {{ $valorFam }}
+                                {{ $valorFam }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -79,30 +183,31 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-header p-3 pt-2">
                         <div
                             class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                            <i class="fa fa-briefcase"></i>
+                            <i class="fa fa-home"></i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-lg mb-0 text-capitalize">Parceiros Sociais</p>
-                            <?php $valorParcS = 0;?>
+                            <p class="text-lg mb-0 text-capitalize">Voluntários</p>
+                            <?php $valorAssoc = 0;?>
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
-                                <?php  $valorParcS += $gerals->numParceirosSociais?>
+                                <?php  $valorAssoc += $gerals->numVoluntarios?>
                                 @endforeach
-                                {{ $valorParcS }}
+                                {{ $valorAssoc }}
+                            </h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
                     <div class="card-footer p-3">
-                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
-                            </span>than yesterday</p> --}}
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55%
+                            </span>than lask week</p> --}}
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                 <div class="card">
                     <div class="card-header p-3 pt-2">
                         <div
@@ -115,7 +220,7 @@
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorFontesA += $gerals->numFontesAlimentos?>
                                 @endforeach
-                                {{ $valorFontesA }}
+                                {{ $valorFontesA }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -125,7 +230,30 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+            <div class="col-xl-4 col-sm-6 mt-xl-2 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-header p-3 pt-2">
+                        <div
+                            class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+                        <div class="text-end pt-1">
+                            <p class="text-lg mb-0 text-capitalize">Parceiros Sociais</p>
+                            <?php $valorParcS = 0;?>
+                            <h4 class="mb-0"> @foreach ($geral as $gerals)
+                                <?php  $valorParcS += $gerals->numParceirosSociais?>
+                                @endforeach
+                                {{ $valorParcS }}</h4>
+                        </div>
+                    </div>
+                    <hr class="dark horizontal my-0">
+                    <div class="card-footer p-3">
+                        {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                            </span>than yesterday</p> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                 <div class="card">
                     <div class="card-header p-3 pt-2">
                         <div
@@ -138,7 +266,7 @@
                             <h4 class="mb-0"> @foreach ($geral as $gerals)
                                 <?php  $valorAssocP += $gerals->numAssociacoesParceiras?>
                                 @endforeach
-                                {{ $valorAssocP }}
+                                {{ $valorAssocP }}</h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -150,7 +278,7 @@
             </div>
         </div>
 
-        <form role="form" method="post" action="/grafico" enctype="multipart/form-data">
+        <form role="form" method="post" action="/" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-sm-1">
@@ -160,7 +288,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <select class="form-control select2" name="ano" id="ano" style="width: 100%;">
+                        <select class="form-control form-select" name="ano" id="ano" style="width: 100%;">
                         <option value="DO" selected="selected" disabled>Selecione um Ano</option>
                         @for ($i = 2016; $i <= date("Y"); $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
@@ -175,7 +303,110 @@
             </div>
         </form>
 
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-Ben" class="chart-canvas" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-0 "> Beneficiarios </h6>
+                        <p class="text-sm "> Numero de viagens</p>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-Fam" class="chart-canvas" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-0 "> Familias </h6>
+                        <p class="text-sm "> Numero de viagens</p>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-Vol" class="chart-canvas" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-0 "> Voluntarios </h6>
+                        <p class="text-sm "> Numero de viagens</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-FontA" class="chart-canvas" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-0 "> Fontes de Alimentos </h6>
+                        <p class="text-sm "> Numero de viagens</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-ParcS" class="chart-canvas" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-0 "> Parceiros Socias </h6>
+                        <p class="text-sm "> Numero de viagens</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                <div class="card z-index-2  ">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <div class="chart">
+                                <canvas id="chart-AssP" class="chart-canvas" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="mb-0 "> Associações Parceiras </h6>
+                        <p class="text-sm "> Numero de viagens</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         {{-- <div class="row mt-4">
             <div class="col-lg-4 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2 ">
@@ -243,417 +474,494 @@
 
         <script src="/assets/js/plugins/chartjs.min.js"></script>
         <script>
-            var ctx = document.getElementById("donativos-comida").getContext("2d");
 
-            new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["M", "T", "W", "T", "F", "S", "S"],
-                    datasets: [{
-                        label: "Sales",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        borderRadius: 4,
-                        borderSkipped: false,
-                        backgroundColor: "rgba(255, 255, 255, .8)",
-                        data: [50, 20, 10, 22, 50, 10, 40],
-                        maxBarThickness: 6
-                    }, ],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false,
-                        }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index',
-                    },
-                    scales: {
-                        y: {
-                            grid: {
-                                drawBorder: false,
-                                display: true,
-                                drawOnChartArea: true,
-                                drawTicks: false,
-                                borderDash: [5, 5],
-                                color: 'rgba(255, 255, 255, .2)'
-                            },
-                            ticks: {
-                                suggestedMin: 0,
-                                suggestedMax: 500,
-                                beginAtZero: true,
-                                padding: 10,
-                                font: {
-                                    size: 14,
-                                    weight: 300,
-                                    family: "Roboto",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                                color: "#fff"
-                            },
-                        },
-                        x: {
-                            grid: {
-                                drawBorder: false,
-                                display: true,
-                                drawOnChartArea: true,
-                                drawTicks: false,
-                                borderDash: [5, 5],
-                                color: 'rgba(255, 255, 255, .2)'
-                            },
-                            ticks: {
-                                display: true,
-                                color: '#f8f9fa',
-                                padding: 10,
-                                font: {
-                                    size: 14,
-                                    weight: 300,
-                                    family: "Roboto",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                            }
-                        },
-                    },
-                },
-            });
+var Ben = document.getElementById("chart-Ben").getContext("2d");
 
-        var ctx2 = document.getElementById("donativos-kg").getContext("2d");
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Donativos",
-                    tension: 0,
-                    borderWidth: 0,
-                    pointRadius: 5,
-                    pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                    pointBorderColor: "transparent",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderWidth: 4,
-                    backgroundColor: "transparent",
-                    fill: true,
-                    data: [100, 240, 30, 50, 40, 300, 320, 500, 350, 200, 230, 500],
-                    maxBarThickness: 6
-
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
+new Chart(Ben, {
+    type: "bar",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        datasets: [{
+            label: "Sales",
+            tension: 0.4,
+            borderWidth: 0,
+            borderRadius: 4,
+            borderSkipped: false,
+            backgroundColor: "rgba(255, 255, 255, .8)",
+            data: [<?php echo join(',', $valoresBen); ?>],
+            maxBarThickness: 6
+        }, ],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            }
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index',
+        },
+        scales: {
+            y: {
+                grid: {
+                    drawBorder: false,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5],
+                    color: 'rgba(255, 255, 255, .2)'
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 500,
+                    beginAtZero: true,
+                    padding: 10,
+                    font: {
+                        size: 14,
+                        weight: 300,
+                        family: "Roboto",
+                        style: 'normal',
+                        lineHeight: 2
                     },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
+                    color: "#fff"
                 },
             },
-        });
-
-        var ctx3 = document.getElementById("rotas-km").getContext("2d");
-
-        new Chart(ctx3, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0,
-                    borderWidth: 0,
-                    pointRadius: 5,
-                    pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                    pointBorderColor: "transparent",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderWidth: 4,
-                    backgroundColor: "transparent",
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
+            x: {
+                grid: {
+                    drawBorder: false,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5],
+                    color: 'rgba(255, 255, 255, .2)'
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#f8f9fa',
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
+                ticks: {
+                    display: true,
+                    color: '#f8f9fa',
+                    padding: 10,
+                    font: {
+                        size: 14,
+                        weight: 300,
+                        family: "Roboto",
+                        style: 'normal',
+                        lineHeight: 2
                     },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
+                }
             },
-        });
+        },
+    },
+});
 
+var Fam = document.getElementById("chart-Fam").getContext("2d");
 
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
+new Chart(Fam, {
+type: "line",
+data: {
+    labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    datasets: [{
+        label: "Mobile apps",
+        tension: 0,
+        borderWidth: 0,
+        pointRadius: 5,
+        pointBackgroundColor: "rgba(255, 255, 255, .8)",
+        pointBorderColor: "transparent",
+        borderColor: "rgba(255, 255, 255, .8)",
+        borderWidth: 4,
+        backgroundColor: "transparent",
+        fill: true,
+        data: [<?php echo join(',', $valoresFam); ?>],
+        maxBarThickness: 6
 
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Donativos",
-                    tension: 0,
-                    borderWidth: 0,
-                    pointRadius: 5,
-                    pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                    pointBorderColor: "transparent",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderWidth: 4,
-                    backgroundColor: "transparent",
-                    fill: true,
-                    data: [100, 240, 30, 50, 40, 300, 320, 500, 350, 200, 230, 500],
-                    maxBarThickness: 6
-
-                }],
+    }],
+},
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: false,
+        }
+    },
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
+    scales: {
+        y: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
+            ticks: {
+                display: true,
+                padding: 10,
+                color: '#f8f9fa',
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
+            }
+        },
+        x: {
+            grid: {
+                drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                borderDash: [5, 5]
             },
-        });
+            ticks: {
+                display: true,
+                color: '#f8f9fa',
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+    },
+},
+});
 
-        var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+var Vol = document.getElementById("chart-Vol").getContext("2d");
 
-        new Chart(ctx3, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0,
-                    borderWidth: 0,
-                    pointRadius: 5,
-                    pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                    pointBorderColor: "transparent",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderWidth: 4,
-                    backgroundColor: "transparent",
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                }],
+new Chart(Vol, {
+type: "bar",
+data: {
+    labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    datasets: [{
+        label: "Sales",
+        tension: 0.4,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(255, 255, 255, .8)",
+        data: [<?php echo join(',', $valoresVol); ?>],
+        maxBarThickness: 6
+    }, ],
+},
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: false,
+        }
+    },
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
+    scales: {
+        y: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
+            ticks: {
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#f8f9fa',
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
+                color: "#fff"
             },
-        });
-    </script>
+        },
+        x: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+                display: true,
+                color: '#f8f9fa',
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+    },
+},
+});
+
+var FontA = document.getElementById("chart-FontA").getContext("2d");
+
+new Chart(FontA, {
+type: "line",
+data: {
+    labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    datasets: [{
+        label: "Mobile apps",
+        tension: 0,
+        borderWidth: 0,
+        pointRadius: 5,
+        pointBackgroundColor: "rgba(255, 255, 255, .8)",
+        pointBorderColor: "transparent",
+        borderColor: "rgba(255, 255, 255, .8)",
+        borderWidth: 4,
+        backgroundColor: "transparent",
+        fill: true,
+        data: [<?php echo join(',', $valoresFontA); ?>],
+        maxBarThickness: 6
+
+    }],
+},
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: false,
+        }
+    },
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
+    scales: {
+        y: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+                display: true,
+                padding: 10,
+                color: '#f8f9fa',
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+        x: {
+            grid: {
+                drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                borderDash: [5, 5]
+            },
+            ticks: {
+                display: true,
+                color: '#f8f9fa',
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+    },
+},
+});
+
+var ParcS = document.getElementById("chart-ParcS").getContext("2d");
+
+new Chart(ParcS, {
+type: "bar",
+data: {
+    labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    datasets: [{
+        label: "Sales",
+        tension: 0.4,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(255, 255, 255, .8)",
+        data: [<?php echo join(',', $valoresParcS); ?>],
+        maxBarThickness: 6
+    }, ],
+},
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: false,
+        }
+    },
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
+    scales: {
+        y: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+                color: "#fff"
+            },
+        },
+        x: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+                display: true,
+                color: '#f8f9fa',
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+    },
+},
+});
+
+var AssP = document.getElementById("chart-AssP").getContext("2d");
+
+new Chart(AssP, {
+type: "line",
+data: {
+    labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    datasets: [{
+        label: "Mobile apps",
+        tension: 0,
+        borderWidth: 0,
+        pointRadius: 5,
+        pointBackgroundColor: "rgba(255, 255, 255, .8)",
+        pointBorderColor: "transparent",
+        borderColor: "rgba(255, 255, 255, .8)",
+        borderWidth: 4,
+        backgroundColor: "transparent",
+        fill: true,
+        data: [<?php echo join(',', $valoresAssP); ?>],
+        maxBarThickness: 6
+
+    }],
+},
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            display: false,
+        }
+    },
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
+    scales: {
+        y: {
+            grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5],
+                color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+                display: true,
+                padding: 10,
+                color: '#f8f9fa',
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+        x: {
+            grid: {
+                drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                borderDash: [5, 5]
+            },
+            ticks: {
+                display: true,
+                color: '#f8f9fa',
+                padding: 10,
+                font: {
+                    size: 14,
+                    weight: 300,
+                    family: "Roboto",
+                    style: 'normal',
+                    lineHeight: 2
+                },
+            }
+        },
+    },
+},
+});
+
+        </script>
 
     <!-- End Script -->
 

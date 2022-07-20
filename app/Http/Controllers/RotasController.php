@@ -22,15 +22,6 @@ class RotasController extends Controller
         $rotas = Rotas::select(DB::RAW("*"))->orderByRaw('id DESC')->get(); // Select * from rotas
         return view('rotas.index', compact('rotas'));
     }
-
-    public function indexGraphs()
-    {
-        // Selecionar os vários valores da base de dados
-
-        $rotas = Rotas::select(DB::RAW('id, carrinhas_id, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida'))->groupBy(DB::RAW('MONTH(rotas.data), YEAR(rotas.data), carrinhas_id'))->get();
-        return view('rotas.rotas', compact('rotas'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -91,12 +82,27 @@ class RotasController extends Controller
      */
     public function show(Rotas $rotas)
     {
-        //
         $carrinhas = Carrinhas::all(); //Select * from Categorias
-        $rotas = Rotas::select(DB::RAW("*, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida"))->orderByRaw('id DESC')->groupBy(DB::RAW('id, mes'))->get(); // Select * from rotas
-        // $rotas = Rotas::select(DB::RAW('id, carrinhas_id, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida')); //Select * from Categorias
-        return view('rotas.show', compact('carrinhas', 'rotas'));
+        $rotasG = Rotas::select(DB::RAW("*, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida"))->where(DB::RAW('YEAR(rotas.data)'), 'LIKE', '%' . (date('Y') - 1) . '%')->orderByRaw('id DESC')->groupBy(DB::RAW('id, mes'))->get(); // Select * from rotas
+        $rotas = Rotas::select(DB::RAW("*, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida"))->where(DB::RAW('MONTH(rotas.data)'), 'LIKE', '%' . (date('m') - 1) . '%')->where(DB::RAW('YEAR(rotas.data)'), 'LIKE', '%' . date('Y') . '%')->orderByRaw('id DESC')->groupBy(DB::RAW('id, mes'))->get(); // Select * from rotas
+        return view('rotas.show', compact('carrinhas', 'rotas', 'rotasG'));
     }
+
+    public function search()
+    {
+        $mes = request('mes');
+        $ano = request('ano');
+
+        if ($ano == '') {
+            $ano = date('Y') - 1;
+        }
+
+        $carrinhas = Carrinhas::all(); //Select * from Categorias
+        $rotasG = Rotas::select(DB::RAW("*, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida"))->where(DB::RAW('YEAR(rotas.data)'), 'LIKE', '%' . $ano . '%')->orderByRaw('id DESC')->groupBy(DB::RAW('id, mes'))->get(); // Select * from rotas
+        $rotas = Rotas::select(DB::RAW("*, count(id) AS totalViag, MONTH(rotas.data) AS Mes, YEAR(rotas.data) AS Ano, sum(kmChegada) AS totalKmChegada, sum(kmPartida) AS totalKmPartida"))->where(DB::RAW('MONTH(rotas.data)'), 'LIKE', '%' . $mes . '%')->where(DB::RAW('YEAR(rotas.data)'), 'LIKE', '%' . date('Y') . '%')->orderByRaw('id DESC')->groupBy(DB::RAW('id, mes'))->get(); // Select * from rotas
+        return view('rotas.show', compact('carrinhas', 'rotas', 'rotasG'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

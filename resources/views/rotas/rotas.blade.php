@@ -94,12 +94,12 @@
         <div class="row">
 
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-TotalV" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-TotalV" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -110,12 +110,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-BV" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-BV" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -125,13 +125,14 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-VV" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-VV" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -142,12 +143,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-KmTotalP" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-KmTotalP" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -157,13 +158,16 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-tKmB" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-tKmB" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>
@@ -174,12 +178,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
+            <div class="col-lg-6 col-md-6 mt-4 mb-4">
                 <div class="card z-index-2  ">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                             <div class="chart">
-                                <canvas id="chart-tKmV" class="chart-canvas" height="170"></canvas>
+                                <canvas id="chart-tKmV" class="chart-canvas" height="250"></canvas>
                             </div>
                         </div>
                     </div>

@@ -8,11 +8,29 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="text-center">{{ __('Despesas') }}</h4>
-                    <div class="row">
-                        <div class="form-group col-md-3">
-                                <p>Mês: {{ $despesas->first()->mes }}/{{ $despesas->first()->ano }}</p>
-                            </select>
-                        </div>
+                    <div class="col-lg-2">
+                        <form role="form" method="post" action="/despesas/show" enctype="multipart/form-data">
+                            @csrf
+                            <div>
+                                <label for="mes">Escolha um mês:</label>
+                            </div>
+
+                            <div class="">
+                                <select name="mes" id="mes" class="form-select form-select-sm">
+                                    @for ($i = 1; $i <= 12; $i++)
+
+                                    @if ($i == date('m') - 1)
+                                        <option value="{{ $i }}" selected>{{ $i }}</option>
+                                    @else
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                    @endfor
+                                </select>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                        </form>
                     </div>
                 </div>
 
@@ -25,7 +43,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total das despesas</p>
+                                    <p class="text-lg mb-0 text-capitalize">Total</p>
                                     <h4 class="mb-0">
                                     {{ ($despesas->first()->rendas + $despesas->first()->eletrecidade + $despesas->first()->agua + $despesas->first()->consumiveis + $despesas->first()->manutencao + $despesas->first()->equipamentos + $despesas->first()->outras)}}</h4>
                                 </div>
@@ -45,7 +63,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Despesa da Eletrecidade</p>
+                                    <p class="text-lg mb-0 text-capitalize">Eletrecidade</p>
                                     <h4 class="mb-0">
                                         {{ $despesas->first()->eletrecidade }}
                                     </h4>
@@ -66,7 +84,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Despesa da Agua</p>
+                                    <p class="text-lg mb-0 text-capitalize">Agua</p>
                                     <h4 class="mb-0">
                                         {{ $despesas->first()->agua }}
                                     </h4>
@@ -87,7 +105,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Despesa da Manutenção</p>
+                                    <p class="text-lg mb-0 text-capitalize">Manutenção</p>
                                     <h4 class="mb-0">
                                     {{ $despesas->first()->manutencao }}
                                 </div>
@@ -99,7 +117,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-3 col-sm-6 mt-xl-2 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -107,7 +125,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Despesa dos Consumiveis</p>
+                                    <p class="text-lg mb-0 text-capitalize">Consumiveis</p>
                                     <h4 class="mb-0">
                                         {{ $despesas->first()->consumiveis }}
                                 </div>
@@ -127,7 +145,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Despesa da Equipamentos</p>
+                                    <p class="text-lg mb-0 text-capitalize">Equipamentos</p>
                                     <h4 class="mb-0">
                                     {{ $despesas->first()->equipamentos }}
                                 </div>
@@ -147,7 +165,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Despesa da Renda</p>
+                                    <p class="text-lg mb-0 text-capitalize">Renda</p>
                                     <h4 class="mb-0">
                                     {{ $despesas->first()->rendas }}
                                 </div>

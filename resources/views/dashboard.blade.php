@@ -10,7 +10,7 @@
                     <h4 class="text-center">{{ __('Administração') }}</h4>
                     <div class="row">
                         <div class="form-group col-md-3">
-                                <p>Mês: {{ $geral->first()->mes }}/{{ $geral->first()->ano }}</p>
+                                {{-- <p>Mês: {{ $geral->first()->mes }}/{{ $geral->first()->ano }}</p> --}}
                             </select>
                         </div>
                     </div>
@@ -33,8 +33,11 @@
                                 </div>
                                 <div class="text-end pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Beneficiários</p>
-                                    <h4 class="mb-0">
-                                    {{ $geral->first()->numBeneficiarios }}</h4>
+                                    <?php $valorBenef = 0;?>
+                                    <h4 class="mb-0">@foreach ($geral as $gerals)
+                                        <?php  $valorBenef += $gerals->numBeneficiarios?>
+                                        @endforeach
+                                        {{ $valorBenef }}</h4>
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
@@ -54,8 +57,10 @@
                                 <div class="text-end pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Famílias</p>
                                     <?php $valorFam = 0;?>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numFamilias }}
+                                    <h4 class="mb-0"> @foreach ($geral as $gerals)
+                                        <?php  $valorFam += $gerals->numFamilias?>
+                                        @endforeach
+                                        {{ $valorFam }}</h4>
                                     </h4>
                                 </div>
                             </div>
@@ -75,8 +80,11 @@
                                 </div>
                                 <div class="text-end pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Voluntários</p>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numVoluntarios}}
+                                    <?php $valorVol = 0;?>
+                                    <h4 class="mb-0"> @foreach ($geral as $gerals)
+                                        <?php  $valorVol += $gerals->numVoluntarios?>
+                                        @endforeach
+                                        {{ $valorVol }}</h4>
                                     </h4>
                                 </div>
                             </div>
@@ -97,8 +105,10 @@
                                 <div class="text-end pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Parceiros Sociais</p>
                                     <?php $valorParcS = 0;?>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numParceirosSociais}}
+                                    <h4 class="mb-0">@foreach ($geral as $gerals)
+                                        <?php  $valorParcS += $gerals->numParceirosSociais?>
+                                        @endforeach
+                                        {{ $valorParcS }}</h4>
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
@@ -117,8 +127,11 @@
                                 </div>
                                 <div class="text-end offset-3 pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Fontes de Alimentos</p>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numFontesAlimentos }}
+                                    <?php $valorFontesA = 0;?>
+                                    <h4 class="mb-0"> @foreach ($geral as $gerals)
+                                        <?php  $valorFontesA += $gerals->numFontesAlimentos?>
+                                        @endforeach
+                                        {{ $valorFontesA }}</h4>
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">
@@ -137,8 +150,12 @@
                                 </div>
                                 <div class="text-end offset-3 pt-1">
                                     <p class="text-lg mb-0 text-capitalize">Associações Parceiras</p>
-                                    <h4 class="mb-0">
-                                        {{ $geral->first()->numAssociacoesParceiras }}
+                                    <?php $valorAssoc = 0;?>
+                                    <?php $valorAssocP = 0;?>
+                                    <h4 class="mb-0"> @foreach ($geral as $gerals)
+                                        <?php  $valorAssocP += $gerals->numAssociacoesParceiras?>
+                                        @endforeach
+                                        {{ $valorAssocP }}</h4>
                                 </div>
                             </div>
                             <hr class="dark horizontal my-0">

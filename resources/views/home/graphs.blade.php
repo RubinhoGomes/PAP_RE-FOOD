@@ -17,7 +17,7 @@
             <?php $valoresBen[] = 0; $valoresFam[] = 0; $valoresVol[] = 0; $valoresFontA[] = 0; $valoresParcS[] = 0; $valoresAssP[] = 0; ?>
             @for ($i = 1; $i <= 12; $i++)
                 <?php
-                    foreach ($gerals as $g ) {
+                    foreach ($geral as $g ) {
                         if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes == $i){
 
                             if(empty($valoresBen[$i])){
@@ -57,22 +57,22 @@
                             }
 
                         }
-                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresBen[$i])){
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes != $i && empty($valoresBen[$i])){
                             $valoresBen[$i] = 0;
                         }
-                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresFam[$i])){
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes != $i && empty($valoresFam[$i])){
                             $valoresFam[$i] = 0;
                         }
-                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresVol[$i])){
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes != $i && empty($valoresVol[$i])){
                             $valoresVol[$i] = 0;
                         }
-                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresFontA[$i])){
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes != $i && empty($valoresFontA[$i])){
                             $valoresParcS[$i] = 0;
                         }
-                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresParcS[$i])){
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes != $i && empty($valoresParcS[$i])){
                             $valoresParcS[$i] = 0;
                         }
-                        if(isset($_POST['ano']) && $r->ano == $_POST['ano'] && $r->mes != $i && empty($valoresAssP[$i])){
+                        if(isset($_POST['ano']) && $g->ano == $_POST['ano'] && $g->mes != $i && empty($valoresAssP[$i])){
                             $valoresAssP[$i] = 0;
                         }
                     }
@@ -80,77 +80,110 @@
             @endfor
             <?php array_shift($valoresBen); array_shift($valoresFam); array_shift($valoresVol); array_shift($valoresParcS); array_shift($valoresAssP);?>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-Ben" class="chart-canvas" height="200"></canvas>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-Ben" class="chart-canvas" height="250"></canvas>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Beneficiarios </h6>
+                            <p class="text-sm "> Numero de viagens</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-Fam" class="chart-canvas" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Familias </h6>
+                            <p class="text-sm "> Numero de viagens</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-Vol" class="chart-canvas" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Voluntarios </h6>
+                            <p class="text-sm "> Numero de viagens</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-FontA" class="chart-canvas" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Fontes de Alimentos </h6>
+                            <p class="text-sm "> Numero de viagens</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-Fam" class="chart-canvas" height="200"></canvas>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-ParcS" class="chart-canvas" height="250"></canvas>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Parceiros Socias </h6>
+                            <p class="text-sm "> Numero de viagens</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                    <div class="card z-index-2  ">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                <div class="chart">
+                                    <canvas id="chart-AssP" class="chart-canvas" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="mb-0 "> Associações Parceiras </h6>
+                            <p class="text-sm "> Numero de viagens</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-Vol" class="chart-canvas" height="200"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-FontA" class="chart-canvas" height="200"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-ParcS" class="chart-canvas" height="200"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mt-4 mb-4">
-                <div class="card z-index-2 ">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <div class="chart">
-                                <canvas id="chart-AssP" class="chart-canvas" height="200"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>

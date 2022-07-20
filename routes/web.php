@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Geral;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,12 @@ use App\Models\Geral;
 */
 
 Route::get('/', function () {
-    $geral = Geral::all();
-    return view('home', compact('geral'));
+    $geralG = Geral::where('ano', 'LIKE', '%' . date('Y') - 1 . '%')->get();
+    $geral = Geral::where('mes', 'LIKE', '%' . (date('m') - 1) . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+    return view('home', compact('geral', 'geralG'));
 });
 
-Route::post('/grafico', function () {
-    $geral = Geral::all();
-    return view('home.graphs', compact('geral'));
-});
+Route::post('/', [App\Http\Controllers\HomeController::class, 'search'])->name('home');
 
 Auth::routes();
 
@@ -37,27 +36,27 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 
 // ** ** ** ** **
 
-Route::get('/rotas', [App\Http\Controllers\RotasController::class, 'index'])->name('rotas');
+Route::get('/rotas', [App\Http\Controllers\RotasController::class, 'index'])->middleware('auth')->name('rotas');
 
 //Criar Rotas
 
-Route::get('/rotas/create', [App\Http\Controllers\RotasController::class, 'create'])->name('rotas.create');
+Route::get('/rotas/create', [App\Http\Controllers\RotasController::class, 'create'])->middleware('auth')->name('rotas.create');
 
 //Guardar Rotas
 
-Route::post('/rotas', [App\Http\Controllers\RotasController::class, 'store']);
+Route::post('/rotas', [App\Http\Controllers\RotasController::class, 'store'])->middleware('auth');
 
 //Form Edit Rotas
 
-Route::get('/rotas/edit/{rotas}', [App\Http\Controllers\RotasController::class, 'edit']);
+Route::get('/rotas/edit/{rotas}', [App\Http\Controllers\RotasController::class, 'edit'])->middleware('auth');
 
 //Update Rotas
 
-Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'update']);
+Route::put('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'update'])->middleware('auth');
 
 //Delete Rotas
 
-Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy']);
+Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'destroy'])->middleware('auth');
 
 // ** ** ** ** **
 
@@ -66,8 +65,8 @@ Route::delete('/rotas/{rotas}', [App\Http\Controllers\RotasController::class, 'd
 //Show Rotas
 Route::get('/rotas/show', [App\Http\Controllers\RotasController::class, 'show']);
 
-//Mostrar Grafico Rotas
-Route::post('/rotas/rotas/', [App\Http\Controllers\RotasController::class, 'indexGraphs'])->name('rotasGraphs');
+Route::post('/rotas/show', [App\Http\Controllers\RotasController::class, 'search']);
+
 
 
 // ** ** ** ** **
@@ -78,27 +77,27 @@ Route::post('/rotas/rotas/', [App\Http\Controllers\RotasController::class, 'inde
 
 // Refeições Listar
 
-Route::get('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'index'])->name('refeicoes');
+Route::get('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'index'])->middleware('auth')->name('refeicoes');
 
 //Criar Refeições
 
-Route::get('/refeicoes/create', [App\Http\Controllers\RefeicoesController::class, 'create'])->name('refeicoes.create');
+Route::get('/refeicoes/create', [App\Http\Controllers\RefeicoesController::class, 'create'])->middleware('auth')->name('refeicoes.create');
 
 //Guardar Refeições
 
-Route::post('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'store']);
+Route::post('/refeicoes', [App\Http\Controllers\RefeicoesController::class, 'store'])->middleware('auth');
 
 //Form Edit Refeições
 
-Route::get('/refeicoes/edit/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'edit']);
+Route::get('/refeicoes/edit/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'edit'])->middleware('auth');
 
 //Update Refeições
 
-Route::put('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'update']);
+Route::put('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'update'])->middleware('auth');
 
 //Delete Refeições
 
-Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'destroy']);
+Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesController::class, 'destroy'])->middleware('auth');
 
 
 // ** ** ** ** **
@@ -108,9 +107,8 @@ Route::delete('/refeicoes/{refeicoes}', [App\Http\Controllers\RefeicoesControlle
 //Show Refeições
 
 Route::get('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 'show']);
+Route::post('/refeicoes/show', [App\Http\Controllers\RefeicoesController::class, 'search']);
 
-//Mostrar Grafico Refeicoes
-Route::post('/refeicoes/refeicoes/', [App\Http\Controllers\RefeicoesController::class, 'indexGraphs'])->name('refeicoesGraphs');
 
 
 // ** ** ** ** **
@@ -121,27 +119,27 @@ Route::post('/refeicoes/refeicoes/', [App\Http\Controllers\RefeicoesController::
 
 // Donativos Listar
 
-Route::get('/donativos', [App\Http\Controllers\DonativosController::class, 'index'])->name('donativos');
+Route::get('/donativos', [App\Http\Controllers\DonativosController::class, 'index'])->middleware('auth')->name('donativos');
 
 //Criar Donativos
 
-Route::get('/donativos/create', [App\Http\Controllers\DonativosController::class, 'create'])->name('donativos.create');
+Route::get('/donativos/create', [App\Http\Controllers\DonativosController::class, 'create'])->middleware('auth')->name('donativos.create');
 
 //Guardar Donativos
 
-Route::post('/donativos', [App\Http\Controllers\DonativosController::class, 'store']);
+Route::post('/donativos', [App\Http\Controllers\DonativosController::class, 'store'])->middleware('auth');
 
 //Form Edit Donativos
 
-Route::get('/donativos/edit/{donativos}', [App\Http\Controllers\DonativosController::class, 'edit']);
+Route::get('/donativos/edit/{donativos}', [App\Http\Controllers\DonativosController::class, 'edit'])->middleware('auth');
 
 //Update Donativos
 
-Route::put('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'update']);
+Route::put('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'update'])->middleware('auth');
 
 //Delete Donativos
 
-Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'destroy']);
+Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosController::class, 'destroy'])->middleware('auth');
 
 
 // ** ** ** ** **
@@ -164,27 +162,27 @@ Route::post('/donativos/donativos/', [App\Http\Controllers\DonativosController::
 
 // Despesas Listar
 
-Route::get('/despesas', [App\Http\Controllers\DespesasController::class, 'index'])->name('despesas');
+Route::get('/despesas', [App\Http\Controllers\DespesasController::class, 'index'])->middleware('auth')->name('despesas');
 
 //Criar Despesas
 
-Route::get('/despesas/create', [App\Http\Controllers\DespesasController::class, 'create'])->name('despesas.create');
+Route::get('/despesas/create', [App\Http\Controllers\DespesasController::class, 'create'])->middleware('auth')->name('despesas.create');
 
 //Guardar Despesas
 
-Route::post('/despesas', [App\Http\Controllers\DespesasController::class, 'store']);
+Route::post('/despesas', [App\Http\Controllers\DespesasController::class, 'store'])->middleware('auth');
 
 //Form Edit Despesas
 
-Route::get('/despesas/edit/{despesas}', [App\Http\Controllers\DespesasController::class, 'edit']);
+Route::get('/despesas/edit/{despesas}', [App\Http\Controllers\DespesasController::class, 'edit'])->middleware('auth');
 
 //Update Despesas
 
-Route::put('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'update']);
+Route::put('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'update'])->middleware('auth');
 
 //Delete Despesas
 
-Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'destroy']);
+Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::class, 'destroy'])->middleware('auth');
 
 
 // ** ** ** ** **
@@ -194,8 +192,6 @@ Route::delete('/despesas/{despesas}', [App\Http\Controllers\DespesasController::
 //Show Despesas
 
 Route::get('/despesas/show', [App\Http\Controllers\DespesasController::class, 'show']);
-
-//Mostrar Grafico Rotas
-Route::post('/despesas/despesas/', [App\Http\Controllers\DespesasController::class, 'indexGraphs'])->name('despesasGraphs');
+Route::post('/despesas/show', [App\Http\Controllers\DespesasController::class, 'search']);
 
 // ** ** ** ** **

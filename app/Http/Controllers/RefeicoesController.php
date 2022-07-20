@@ -80,8 +80,23 @@ class RefeicoesController extends Controller
     public function show(Refeicoes $refeicoes)
     {
         //
-        $refeicoes = Refeicoes::all();
-        return view('refeicoes.show', compact('refeicoes'));
+        $refeicoesG = Refeicoes::select(DB::RAW("id, count(id) AS totalRef, ano, mes, kgAssociacoes, kg2Associacoes, kgBenefeciarios"))->where('ano', 'LIKE', '%' . (date('Y') - 1) . '%')->groupBy('id')->get();
+        $refeicoes = Refeicoes::select(DB::RAW("id, count(id) AS totalRef, ano, mes, kgAssociacoes, kg2Associacoes, kgBenefeciarios"))->where('mes', 'LIKE', '%' . (date('m') - 1) . '%')->where('ano', 'LIKE', '%' . date('Y'))->groupBy('id')->get();
+        return view('refeicoes.show', compact('refeicoes', 'refeicoesG'));
+    }
+
+    public function search()
+    {
+        $mes = request('mes');
+        $ano = request('ano');
+
+        if ($ano == '') {
+            $ano = date('Y') - 1;
+        }
+
+        $refeicoesG = Refeicoes::select(DB::RAW("id, count(id) AS totalRef, ano, mes, kgAssociacoes, kg2Associacoes, kgBenefeciarios"))->where('ano', 'LIKE', '%' . $ano . '%')->groupBy('id')->get();
+        $refeicoes = Refeicoes::select(DB::RAW("id, count(id) AS totalRef, ano, mes, kgAssociacoes, kg2Associacoes, kgBenefeciarios"))->where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y'))->groupBy('id')->get();
+        return view('refeicoes.show', compact('refeicoes', 'refeicoesG'));
     }
 
     /**
