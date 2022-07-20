@@ -149,9 +149,8 @@ Route::delete('/donativos/{donativos}', [App\Http\Controllers\DonativosControlle
 //Show Donativos
 
 Route::get('/donativos/show', [App\Http\Controllers\DonativosController::class, 'show']);
+Route::post('/donativos/show', [App\Http\Controllers\DonativosController::class, 'search']);
 
-//Mostrar Grafico Donativos
-Route::post('/donativos/donativos/', [App\Http\Controllers\DonativosController::class, 'indexGraphs'])->name('donativosGraphs');
 
 
 // ** ** ** ** **

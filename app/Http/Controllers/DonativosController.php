@@ -20,12 +20,6 @@ class DonativosController extends Controller
         return view('donativos.index', compact('donativos'));
     }
 
-    public function indexGraphs()
-    {
-        // Buscar dados a base de dados
-        $donativos = Donativos::select(DB::RAW("donativos.id, count(id) AS totalDon, donativos.mes, donativos.ano, donativos.valorDinheiro, donativos.valorNaoPerciveis, donativos.valorConsumiveis"))->groupBy('id')->get(); // Select * from Refeições
-        return view('donativos.donativos', compact('donativos'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -77,9 +71,28 @@ class DonativosController extends Controller
      */
     public function show(Donativos $donativos)
     {
-        $donativos = Donativos::all();
-        return view('donativos.show', compact('donativos'));
+        $donativos = Donativos::where('mes', 'LIKE', '%' . (date('m') - 1) . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        $donativosG = Donativos::where('ano', 'LIKE', '%' . (date('Y') - 1) . '%')->get();
+        return view('donativos.show', compact('donativos', 'donativosG'));
     }
+
+    public function search(Donativos $donativos)
+    {
+        $mes = request('mes');
+        $ano = request('ano');
+
+        if ($ano == '') {
+            $ano = date('Y') - 1;
+        }
+        if ($mes == '') {
+            $mes = date('m') - 1;
+        }
+
+        $donativos = Donativos::where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        $donativosG = Donativos::where('ano', 'LIKE', '%' . $ano . '%')->get();
+        return view('donativos.show', compact('donativos', 'donativosG'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
