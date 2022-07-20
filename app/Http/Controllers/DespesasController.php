@@ -78,9 +78,9 @@ class DespesasController extends Controller
      */
     public function show(Despesas $despesas)
     {
-        //
-        $despesas = Despesas::all();
-        return view('despesas.show', compact('despesas'));
+        $despesasG = Despesas::select(DB::RAW("*"))->where('ano', 'LIKE', '%' . date('Y')  - 1 . '%')->get();
+        $despesas = Despesas::where('mes', 'LIKE', '%' . date('m') - 1 . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        return view('despesas.show', compact('despesas', 'despesasG'));
     }
 
     public function search(Despesas $despesas)
@@ -88,8 +88,13 @@ class DespesasController extends Controller
         $mes = request('mes');
         $ano = request('ano');
 
-        $despesas = Despesas::where('mes', 'LIKE', '%' . $mes . '%');
-        return view('despesas.show', compact('despesas'));
+        if ($ano == '') {
+            $ano = date('Y') - 1;
+        }
+
+        $despesasG = Despesas::select(DB::RAW("*"))->where('ano', 'LIKE', '%' . $ano . '%')->get();
+        $despesas = Despesas::where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        return view('despesas.show', compact('despesas', 'despesasG'));
     }
 
     /**
