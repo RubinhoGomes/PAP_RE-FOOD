@@ -26,11 +26,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $geral = Geral::where('mes', 'LIKE', '%' . (date('m') - 1) . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
-        return view('dashboard', compact('geral'));
-    }
+
+
 
     public function search()
     {
@@ -44,19 +41,5 @@ class HomeController extends Controller
         $geral = Geral::where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
         $geralG = Geral::where('ano', 'LIKE', '%' . $ano . '%')->get();
         return view('home', compact('geral', 'geralG'));
-    }
-
-
-    public function searchDashboard()
-    {
-        $mes = request('mes');
-        $ano = request('ano');
-
-        if ($ano == '') {
-            $ano = date('Y') - 1;
-        }
-
-        $geral = Geral::where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
-        return view('dashboard', compact('geral'));
     }
 }

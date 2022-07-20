@@ -27,8 +27,20 @@ Auth::routes();
 
 // DashBoard / BackOffice
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-Route::post('/dashboard', [App\Http\Controllers\HomeController::class, 'searchDashboard'])->name('dashboardG');
+Route::get('/dashboard', [App\Http\Controllers\GeralController::class, 'index'])->name('dashboard');
+Route::post('/dashboard', [App\Http\Controllers\GeralController::class, 'search'])->name('dashboardG');
+
+Route::get('/geral', [App\Http\Controllers\GeralController::class, 'index'])->middleware('auth')->name('geral');
+
+Route::get('/geral/index', [App\Http\Controllers\GeralController::class, 'indexM'])->middleware('auth')->name('geral.index');
+
+Route::get('/geral/create', [App\Http\Controllers\GeralController::class, 'create'])->middleware('auth')->name('geral.create');
+Route::post('/geral', [App\Http\Controllers\GeralController::class, 'store'])->middleware('auth');
+
+Route::get('/geral/edit/{geral}', [App\Http\Controllers\GeralController::class, 'edit'])->middleware('auth');
+Route::put('/geral/{geral}', [App\Http\Controllers\GeralController::class, 'update'])->middleware('auth');
+
+Route::delete('/geral/{geral}', [App\Http\Controllers\GeralController::class, 'destroy'])->middleware('auth');
 
 
 // ** ** ** ** **

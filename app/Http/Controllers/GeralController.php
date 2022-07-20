@@ -14,8 +14,14 @@ class GeralController extends Controller
      */
     public function index()
     {
-        // Selecionar os dados da base de dados
+        $geral = Geral::where('mes', 'LIKE', '%' . (date('m') - 1) . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        return view('dashboard', compact('geral'));
+    }
+
+    public function indexM()
+    {
         $geral = Geral::all();
+        return view('geral.index', compact('geral'));
     }
 
     /**
@@ -25,7 +31,8 @@ class GeralController extends Controller
      */
     public function create()
     {
-        //
+        $donativos = Geral::all(); //Select * from Donativos
+        return view('geral.create', compact('donativos'));
     }
 
     /**
@@ -36,7 +43,30 @@ class GeralController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Request()->validate([
+            'valBen' => 'required',
+            'valFam' => 'required',
+            'valVol' => 'required',
+            'valFonA' => 'required',
+            'valParS' => 'required',
+            'valAssP' => 'required',
+            'mes' => 'required',
+            'ano' => 'required',
+        ]);
+
+        $geral = new Geral();
+        $geral->numBeneficiarios = request('valBen'); //vai buscar ao form
+        $geral->numFamilias = request('valFam');
+        $geral->numVoluntarios = request('valVol');
+        $geral->numFontesAlimentos = request('valFonA');
+        $geral->numParceirosSociais = request('valParS');
+        $geral->numAssociacoesParceiras = request('valAssP');
+        $geral->mes = request('mes');
+        $geral->ano = request('ano');
+
+        /*$rotas->user_id = Auth::id(); */
+        $geral->save();
+        return redirect('/dashboard')->with('message', 'Dados inserido com sucesso');
     }
 
     /**
@@ -50,6 +80,19 @@ class GeralController extends Controller
         //
     }
 
+    public function search()
+    {
+        $mes = request('mes');
+        $ano = request('ano');
+
+        if ($ano == '') {
+            $ano = date('Y') - 1;
+        }
+
+        $geral = Geral::where('mes', 'LIKE', '%' . $mes . '%')->where('ano', 'LIKE', '%' . date('Y') . '%')->get();
+        return view('dashboard', compact('geral'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,7 +101,7 @@ class GeralController extends Controller
      */
     public function edit(Geral $geral)
     {
-        //
+        return view('geral.edit', compact('geral'));
     }
 
     /**
@@ -70,7 +113,29 @@ class GeralController extends Controller
      */
     public function update(Request $request, Geral $geral)
     {
-        //
+        Request()->validate([
+            'valBen' => 'required',
+            'valFam' => 'required',
+            'valVol' => 'required',
+            'valFonA' => 'required',
+            'valParS' => 'required',
+            'valAssP' => 'required',
+            'mes' => 'required',
+            'ano' => 'required',
+        ]);
+
+        $geral->numBeneficiarios = request('valBen'); //vai buscar ao form
+        $geral->numFamilias = request('valFam');
+        $geral->numVoluntarios = request('valVol');
+        $geral->numFontesAlimentos = request('valFonA');
+        $geral->numParceirosSociais = request('valParS');
+        $geral->numAssociacoesParceiras = request('valAssP');
+        $geral->mes = request('mes');
+        $geral->ano = request('ano');
+
+        /*$rotas->user_id = Auth::id(); */
+        $geral->save();
+        return redirect('/dashboard')->with('message', 'Dados inserido com sucesso');
     }
 
     /**
@@ -81,6 +146,7 @@ class GeralController extends Controller
      */
     public function destroy(Geral $geral)
     {
-        //
+        $geral->delete();
+        return redirect('/geral')->with('message', 'Dado eliminado com sucesso!');
     }
 }
