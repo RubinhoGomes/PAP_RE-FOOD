@@ -17,13 +17,14 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('mes');
             $table->year('ano');
-            $table->double('rendas', 6, 2);
-            $table->double('eletrecidade', 6, 2);
-            $table->double('agua', 6, 2);
-            $table->double('consumiveis', 6, 2);
-            $table->double('manutencao', 6, 2);
-            $table->double('equipamentos', 6, 2);
-            $table->double('outras', 6, 2);
+            $table->decimal('rendas', 8, 2);
+            $table->decimal('eletrecidade', 8, 2);
+            $table->decimal('agua', 8, 2);
+            $table->decimal('consumiveis', 8, 2);
+            $table->decimal('manutencao', 8, 2);
+            $table->decimal('equipamentos', 8, 2);
+            $table->decimal('combustivel', 8, 2);
+            $table->decimal('outras', 8, 2);
         });
     }
 

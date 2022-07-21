@@ -133,11 +133,11 @@
                         <form role="form" method="post" action="/rotas/show/" enctype="multipart/form-data">
                             @csrf
                             <div>
-                                <label for="mes">Escolha um mês:</label>
+                                <label for="mes" class="font-weight-bold h6">Escolha um mês:</label>
                             </div>
 
                             <div class="">
-                                <select name="mes" id="mes" class="form-select form-select-sm">
+                                <select name="mes" id="mes" class="form-select form-select-sm text-center">
                                     @for ($i = 1; $i <= 12; $i++)
 
                                     @if ($i == date('m') - 1)
@@ -150,7 +150,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                            <button type="submit" class="btn btn-primary mt-xl-2" name="btnPesquisar">Pesquisar</button>
                         </form>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total de Rotas</p>
+                                    <p class="text-lg mb-0 text-capitalize">Número de Viagens</p>
                                     <h4 class="mb-0">
                                     {{  $rotas->count() }}</h4>
                                 </div>
@@ -184,7 +184,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total da Carrinha Branca</p>
+                                    <p class="text-lg mb-0 text-capitalize">Número de Viagens da Carrinha Branca</p>
                                     <?php $valorCarrinhaBranca = 0; ?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
@@ -211,7 +211,7 @@
                                     <i class="fas fa-truck"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total da Carrinha Vermelha</p>
+                                    <p class="text-lg mb-0 text-capitalize">Número de Viagens da Carrinha Vermelha</p>
                                     <?php $valorCarrinhaVermelha = 0;?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
@@ -238,7 +238,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total Km Percorridos</p>
+                                    <p class="text-lg mb-0 text-capitalize">Quilómetros Percorridos</p>
                                     <?php $totalKm = 0;?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
@@ -264,7 +264,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total Km Carrinha Branca</p>
+                                    <p class="text-lg mb-0 text-capitalize">Quilómetros Percorridos da Carrinha Branca</p>
                                     <?php $totalKm = 0;?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
@@ -290,7 +290,7 @@
                                     <i class="fas fa-tachometer-alt"></i>
                                 </div>
                                 <div class="text-end offset-3 pt-1">
-                                    <p class="text-lg mb-0 text-capitalize">Total Km Carrinha Vermelha</p>
+                                    <p class="text-lg mb-0 text-capitalize">Quilómetros Percorridos da Carrinha Vermelha</p>
                                     <?php $totalKm = 0;?>
                                     <h4 class="mb-0">
                                         @foreach ($rotas as $rota)
@@ -312,22 +312,23 @@
                 <form role="form" method="POST" action="/rotas/show" enctype="multipart/form-data">
                     {{ csrf_field() }} {{ method_field('POST') }}
                     <div class="row">
-                        <div class="col-sm-1">
+                        <p class="text-center mt-xl-4 mb-xl-4 h4">Consulte os dados anuais</p>
+                        <div class="col-sm-1 text-center">
                                 <div class="mt-2 ml-2">
-                                    <label for="ano">Ano: </label>
+                                    <label for="ano" class="font-weight-bold h6">Ano: </label>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-1">
                                 <div class="form-group">
-                                    <select class="form-control" name="ano" id="ano">
-                                    <option value="DO" selected="selected" disabled>Selecione um Ano</option>
+                                    <select class="form-control text-center" name="ano" id="ano">
+                                    <option value="DO" selected="selected" disabled>Selecionar Ano</option>
                                     @for ($i = 2016; $i <= date("Y"); $i++)
                                     @if ($i == date('Y') - 1)
                                     <option value="{{ $i }}" selected>{{ $i }}</option>
                                     @else
                                     <option value="{{ $i }}">{{ $i }}</option>
                                     @endif
-                                    @endfor ($rotas as $rota)
+                                    @endfor
                                     </select>
                                 </div>
                             </div>
@@ -353,7 +354,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Total de Viagens </h6>
+                                <h6 class="mb-0 "> Número de Viagens </h6>
                                 <p class="text-sm "> Numero de viagens</p>
                             </div>
                         </div>
@@ -369,7 +370,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Total de Viagens da Carrinha Branca</h6>
+                                <h6 class="mb-0 "> Número de Viagens da Carrinha Branca</h6>
                                 <p class="text-sm "> Numero de viagens</p>
                             </div>
                         </div>
@@ -386,7 +387,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Total de Viagens da Carrinha Vermelha</h6>
+                                <h6 class="mb-0 "> Número de Viagens da Carrinha Vermelha</h6>
                                 <p class="text-sm "> Numero de viagens</p>
                             </div>
                         </div>
@@ -402,8 +403,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Total de Quilometros Percoridos </h6>
-                                <p class="text-sm "> Numero de Quilometros</p>
+                                <h6 class="mb-0 "> Quilómetros Percoridos </h6>
+                                <p class="text-sm "> Numero de Quilómetros</p>
                             </div>
                         </div>
                     </div>
@@ -421,8 +422,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Total de Quilometros Percoridos da Carrinha Branca</h6>
-                                <p class="text-sm "> Numero de Quilometros</p>
+                                <h6 class="mb-0 "> Quilómetros Percoridos da Carrinha Branca</h6>
+                                <p class="text-sm "> Numero de Quilómetros</p>
                             </div>
                         </div>
                     </div>
@@ -437,8 +438,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Total de Quilometros Percoridos da Carrinha Vermelha</h6>
-                                <p class="text-sm "> Numero de Quilometros</p>
+                                <h6 class="mb-0 "> Quilómetros Percoridos da Carrinha Vermelha</h6>
+                                <p class="text-sm "> Numero de Quilómetros</p>
                             </div>
                         </div>
                     </div>
@@ -462,7 +463,7 @@
         data: {
             labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
             datasets: [{
-                label: "Sales",
+                label: "Viagens",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,
@@ -542,7 +543,7 @@
         data: {
             labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
             datasets: [{
-                label: "Sales",
+                label: "Viagens",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,
@@ -622,7 +623,7 @@
         data: {
             labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
             datasets: [{
-                label: "Sales",
+                label: "Viagens",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,
@@ -703,7 +704,7 @@
         data: {
             labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
             datasets: [{
-                label: "Sales",
+                label: "Quilómetros",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,
@@ -783,7 +784,7 @@
         data: {
             labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
             datasets: [{
-                label: "Sales",
+                label: "Quilómetros",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,
@@ -863,7 +864,7 @@
         data: {
             labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
             datasets: [{
-                label: "Sales",
+                label: "Quilómetros",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,

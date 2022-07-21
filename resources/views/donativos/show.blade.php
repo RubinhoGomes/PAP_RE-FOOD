@@ -72,11 +72,11 @@
                         <form role="form" method="post" action="/donativos/show" enctype="multipart/form-data">
                             @csrf
                             <div>
-                                <label for="mes">Escolha um mês:</label>
+                                <label for="mes" class="font-weight-bold h6">Escolha um mês:</label>
                             </div>
 
                             <div class="">
-                                <select name="mes" id="mes" class="form-select form-select-sm">
+                                <select name="mes" id="mes" class="form-select form-select-sm text-center">
                                     @for ($i = 1; $i <= 12; $i++)
 
                                     @if ($i == date('m') - 1)
@@ -89,7 +89,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                            <button type="submit" class="btn btn-primary mt-xl-2" name="btnPesquisar">Pesquisar</button>
                         </form>
                     </div>
                 </div>
@@ -166,20 +166,24 @@
                 <form role="form" method="post" action="/donativos/show" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-sm-1">
-                            <div class="mt-2 ml-2">
-                                <label for="ano">Ano: </label>
+                        <p class="text-center mt-xl-4 mb-xl-4 h4">Consulte os dados anuais</p>
+                        <div class="col-sm-1 text-center">
+                                <div class="mt-2 ml-2">
+                                    <label for="ano" class="font-weight-bold h6">Ano: </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                            <select class="form-control select2" name="ano" id="ano" style="width: 100%;">
-                            <option value="DO" selected="selected" disabled>Selecione um Ano</option>
-                            @for ($i = 2016; $i <= date("Y"); $i++)
-                            <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor ($rotas as $rota)
-
-                            </select>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <select class="form-control text-center" name="ano" id="ano">
+                                    <option value="DO" selected="selected" disabled>Selecionar Ano</option>
+                                    @for ($i = 2016; $i <= date("Y"); $i++)
+                                    @if ($i == date('Y') - 1)
+                                    <option value="{{ $i }}" selected>{{ $i }}</option>
+                                    @else
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                    @endfor
+                                    </select>
                         </div>
                     </div>
                     <div class="row">

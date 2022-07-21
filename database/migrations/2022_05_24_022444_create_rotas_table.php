@@ -23,7 +23,7 @@ return new class extends Migration
             $table->time('horaChegada');
             $table->tinyInteger('numRota');
             $table->string('motorista');
-            $table->string('observacoes');
+            $table->string('observacoes')->nullable();
             $table->foreign('carrinhas_id')
                 ->references('id')
                 ->on('carrinhas')

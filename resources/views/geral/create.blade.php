@@ -22,7 +22,7 @@
                         <!-- Valor dos Beneficiarios -->
                         <div class="form-group col-lg-3">
                             <label for="valBen">Beneficiários</label>
-                            <input type="number" class="form-control border text-center" id="valBen" name="valBen" placeholder="Insira o valor dos donativos" value="{{ old('valBen') }}">
+                            <input type="number" class="form-control border text-center" id="valBen" name="valBen" placeholder="Insira o número dos Beneficiários" value="{{ old('valBen') }}">
                             @error('valBen')
                                 <p class="text-danger">{{ $errors->first('valBen') }} </p>
                             @enderror
@@ -30,7 +30,7 @@
                         <!-- Valor das Familias -->
                         <div class="form-group col-lg-3">
                             <label for="valFam">Famílias</label>
-                            <input type="number" class="form-control border text-center" id="valFam" name="valFam" placeholder="Insira o valor dos alimentos não percíveis" value="{{ old('valFam') }}">
+                            <input type="number" class="form-control border text-center" id="valFam" name="valFam" placeholder="Insira o número das Famílias" value="{{ old('valFam') }}">
                             @error('valFam')
                                 <p class="text-danger">{{ $errors->first('valFam') }} </p>
                             @enderror
@@ -38,16 +38,19 @@
                         <!-- Valor dos Voluntarios -->
                         <div class="form-group col-lg-3">
                             <label for="valVol">Voluntários</label>
-                            <input type="number" class="form-control border text-center" id="valVol" name="valVol" placeholder="Insira o valor dos consumíveis" value="{{ old('valVol') }}">
+                            <input type="number" class="form-control border text-center" id="valVol" name="valVol" placeholder="Insira o número dos Voluntários" value="{{ old('valVol') }}">
                             @error('valVol')
                                 <p class="text-danger">{{ $errors->first('valVol') }} </p>
                             @enderror
                         </div>
+                    </div>
+
+                    <div class="row">
 
                         <!-- Valor das Fontes de Alimentos -->
                         <div class="form-group col-lg-3">
                             <label for="valFonA">Fontes de Alimentos</label>
-                            <input type="number" class="form-control border text-center" id="valFonA" name="valFonA" placeholder="Insira o valor dos donativos" value="{{ old('valFonA') }}">
+                            <input type="number" class="form-control border text-center" id="valFonA" name="valFonA" placeholder="Insira o número das Fontes de Alimentos" value="{{ old('valFonA') }}">
                             @error('valFonA')
                                 <p class="text-danger">{{ $errors->first('valFonA') }} </p>
                             @enderror
@@ -55,7 +58,7 @@
                         <!-- Valor dos Parceiros Sociais -->
                         <div class="form-group col-lg-3">
                             <label for="valParS">Parceiros Sociais</label>
-                            <input type="number" class="form-control border text-center" id="valParS" name="valParS" placeholder="Insira o valor dos alimentos não percíveis" value="{{ old('valParS') }}">
+                            <input type="number" class="form-control border text-center" id="valParS" name="valParS" placeholder="Insira o número dos Parceiros Sociais" value="{{ old('valParS') }}">
                             @error('valParS')
                                 <p class="text-danger">{{ $errors->first('valParS') }} </p>
                             @enderror
@@ -63,15 +66,12 @@
                         <!-- Valor das Associações -->
                         <div class="form-group col-lg-3">
                             <label for="valAssP">Associações Parceiras</label>
-                            <input type="number" class="form-control border text-center" id="valAssP" name="valAssP" placeholder="Insira o valor dos consumíveis" value="{{ old('valAssP') }}">
+                            <input type="number" class="form-control border text-center" id="valAssP" name="valAssP" placeholder="Insira o número das Associações Parceiras" value="{{ old('valAssP') }}">
                             @error('valAssP')
                                 <p class="text-danger">{{ $errors->first('valAssP') }} </p>
                             @enderror
                         </div>
-
-
                     </div>
-
 
                    <!-- Data -->
                     <div class="row">

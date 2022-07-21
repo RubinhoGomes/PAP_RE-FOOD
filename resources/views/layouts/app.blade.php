@@ -176,8 +176,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md shadow-none">
             <div class="container">
-                <a class="navbar-brand">
-                    <h6 class="font-weight-bolder mb-0 text-Refood">Re-Food </h6>
+                <a class="navbar-brand col-lg-2">
+                    <img src="/assets/img/logo-ct.png" class="navbar-brand-img" height="85" alt="Logo da Refood">
+                    {{-- <h6 class="font-weight-bolder mb-0 text-Refood">Re-Food </h6> --}}
                 </a>
 {{--                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

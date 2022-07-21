@@ -80,6 +80,15 @@
 
                     <div class="row">
 
+                       <!-- Valor dos combustiveis -->
+                        <div class="form-group col-lg-3">
+                            <label for="valCombs">Valor dos Combustíveis</label>
+                            <input type="number" class="form-control border text-center" id="valCombs" name="valCombs" placeholder="Insira o valor dos combustiveis" value="{{ $despesas->combustivel }}">
+                            @error('valCombs')
+                                <p class="text-danger">{{ $errors->first('valCombs') }} </p>
+                            @enderror
+                        </div>
+
                         <!-- Valor dos outros -->
                         <div class="form-group col-lg-3">
                             <label for="valOutros">Valor dos Outros</label>

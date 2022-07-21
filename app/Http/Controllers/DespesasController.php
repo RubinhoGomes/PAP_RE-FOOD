@@ -49,6 +49,7 @@ class DespesasController extends Controller
             'valCons' => 'required',
             'valManu' => 'required',
             'valEquip' => 'required',
+            'valCombs' => 'required',
             'valOutros' => 'required',
             'mes' => 'required',
             'ano' => 'required',
@@ -61,6 +62,7 @@ class DespesasController extends Controller
         $despesas->consumiveis = request('valCons');
         $despesas->manutencao = request('valManu');
         $despesas->equipamentos = request('valEquip');
+        $despesas->combustivel = request('valCombs');
         $despesas->outras = request('valOutros');
         $despesas->mes = request('mes');
         $despesas->ano = request('ano');
@@ -127,6 +129,7 @@ class DespesasController extends Controller
             'valCons' => 'required',
             'valManu' => 'required',
             'valEquip' => 'required',
+            'valCombs' => 'required',
             'valOutros' => 'required',
             'mes' => 'required',
             'ano' => 'required',
@@ -138,6 +141,7 @@ class DespesasController extends Controller
         $despesas->consumiveis = request('valCons');
         $despesas->manutencao = request('valManu');
         $despesas->equipamentos = request('valEquip');
+        $despesas->combustivel = request('valCombs');
         $despesas->outras = request('valOutros');
         $despesas->mes = request('mes');
         $despesas->ano = request('ano');

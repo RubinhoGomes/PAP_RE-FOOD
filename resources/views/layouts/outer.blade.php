@@ -376,7 +376,7 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
 
-    $('.nav-link').click(function (e) {
+    $('.nav-link').click(function () {
         $('.nav-link').removeClass('active');
         $(this).toggleClass('active');
     });

@@ -114,7 +114,7 @@
                         <form role="form" method="post" action="/" enctype="multipart/form-data">
                             @csrf
                             <div>
-                                <label for="mes">Escolha um mês:</label>
+                                <label for="mes" class="font-weight-bold h6">Escolha um mês:</label>
                             </div>
 
                             <div class="">
@@ -131,7 +131,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                            <button type="submit" class="btn btn-primary mt-xl-2" name="btnPesquisar">Pesquisar</button>
                         </form>
                     </div>
             </div>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<?php $valoresRenda[] = 0; $valoresElet[] = 0; $valoresAgua[] = 0; $valoresCons[] = 0; $valoresManu[] = 0; $valoresEquip[] = 0; $valoresOutros[] = 0; $valoresTotalD[] = 0; ?>
+<?php $valoresRenda[] = 0; $valoresElet[] = 0; $valoresAgua[] = 0; $valoresCons[] = 0; $valoresManu[] = 0; $valoresEquip[] = 0; $valoresCombs[] = 0;$valoresOutros[] = 0; $valoresTotalD[] = 0; ?>
 
 @for ($i = 1; $i <= 12; $i++)
 <?php
@@ -45,6 +45,12 @@
                 $valoresEquip[$i] += $d->equipamentos;
             }
 
+            if(empty($valoresCombs[$i])){
+                $valoresCombs[$i] = $d->combustivel;
+            } else if(!empty($valoresCombs[$i])){
+                $valoresCombs[$i] += $d->combustivel;
+            }
+
             if(empty($valoresOutros[$i])){
                 $valoresOutros[$i] = $d->outras;
             } else if(!empty($valoresOutros[$i])){
@@ -52,9 +58,9 @@
             }
 
             if(empty($valoresTotalD[$i])){
-                $valoresTotalD[$i] = $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->outras;
+                $valoresTotalD[$i] = $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->combustivel + $d->outras;
             } else if(!empty($valoresTotalD[$i])){
-                $valoresTotalD[$i] += $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->outras;
+                $valoresTotalD[$i] += $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->combustivel + $d->outras;
             }
 
         }
@@ -95,16 +101,22 @@
                     $valoresEquip[$i] += $d->equipamentos;
                 }
 
-                if(empty($valoresOutros[$i])){
-                    $valoresOutros[$i] = $d->outras;
-                } else if(!empty($valoresOutros[$i])){
-                    $valoresOutros[$i] += $d->outras;
+                if(empty($valoresCombs[$i])){
+                    $valoresCombs[$i] = $d->combustivel;
+                } else if(!empty($valoresCombs[$i])){
+                    $valoresCombs[$i] += $d->combustivel;
                 }
 
+                if(empty($valoresOutros[$i])){
+                $valoresOutros[$i] = $d->outras;
+            } else if(!empty($valoresOutros[$i])){
+                $valoresOutros[$i] += $d->outras;
+            }
+
                 if(empty($valoresTotalD[$i])){
-                    $valoresTotalD[$i] = $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->outras;
+                    $valoresTotalD[$i] = $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->combustivel + $d->outras;
                 } else if(!empty($valoresTotalD[$i])){
-                    $valoresTotalD[$i] += $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->outras;
+                    $valoresTotalD[$i] += $d->rendas + $d->agua + $d->eletrecidade + $d->consumiveis + $d->manutencao + $d->equipamentos + $d->combustivel + $d->outras;
                 }
             }
         if($d->mes != $i && empty($valoresRenda[$i])){
@@ -125,8 +137,11 @@
         if($d->mes != $i && empty($valoresEquip[$i])){
             $valoresEquip[$i] = 0;
         }
+        if($d->mes != $i && empty($valoresCombs[$i])){
+            $valoresCombs[$i] = 0;
+        }
         if($d->mes != $i && empty($valoresOutros[$i])){
-            $valoresOutros[$i] = 0;
+            $valoresTotalD[$i] = 0;
         }
         if($d->mes != $i && empty($valoresTotalD[$i])){
             $valoresTotalD[$i] = 0;
@@ -148,11 +163,11 @@
                         <form role="form" method="post" action="/despesas/show" enctype="multipart/form-data">
                             @csrf
                             <div>
-                                <label for="mes">Escolha um mês:</label>
+                                <label for="mes" class="font-weight-bold h6">Escolha um mês:</label>
                             </div>
 
                             <div class="">
-                                <select name="mes" id="mes" class="form-select form-select-sm">
+                                <select name="mes" id="mes" class="form-select form-select-sm text-center">
                                     @for ($i = 1; $i <= 12; $i++)
 
                                     @if ($i == date('m') - 1)
@@ -165,13 +180,13 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary" name="btnPesquisar">Pesquisar</button>
+                            <button type="submit" class="btn btn-primary mt-xl-2" name="btnPesquisar">Pesquisar</button>
                         </form>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -194,7 +209,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -218,7 +233,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -242,7 +257,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -265,7 +280,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mt-xl-2 mb-xl-0 mb-4">
+                    <div class="col-xl-4 col-sm-6 mt-xl-2 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -288,7 +303,7 @@
                         </div>
                     </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -311,7 +326,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -334,7 +349,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 pt-2">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
+                        <div class="card">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                <div class="text-end offset-3 pt-1">
+                                    <p class="text-lg mb-0 text-capitalize">Combustível</p>
+                                    <?php $totalCb = 0;?>
+                                    <h4 class="mb-0">@foreach ($despesas as $d)
+                                        <?php  $totalCb += $d->combustivel; ?>
+                                        @endforeach
+                                        {{ $totalCb }}</h4>
+                                </div>
+                            </div>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                {{-- <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5%
+                                    </span>than yesterday</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4 pt-2">
                         <div class="card">
                             <div class="card-header p-3 pt-2">
                                 <div
@@ -361,19 +399,24 @@
                 <form role="form" method="post" action="/despesas/show" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-sm-1">
-                            <div class="mt-2 ml-2">
-                                <label for="ano">Ano: </label>
+                        <p class="text-center mt-xl-4 mb-xl-4 h4">Consulte os dados anuais</p>
+                        <div class="col-sm-1 text-center">
+                                <div class="mt-2 ml-2">
+                                    <label for="ano" class="font-weight-bold h6">Ano: </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <select class="form-control select2" name="ano" id="ano" style="width: 100%;">
-                                <option value="DO" selected="selected" disabled>Selecione um Ano</option>
-                                @for ($i = 2016; $i <= date("Y"); $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                                @endfor ($rotas as $rota)
-                                </select>
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <select class="form-control text-center" name="ano" id="ano">
+                                    <option value="DO" selected="selected" disabled>Selecionar Ano</option>
+                                    @for ($i = 2016; $i <= date("Y"); $i++)
+                                    @if ($i == date('Y') - 1)
+                                    <option value="{{ $i }}" selected>{{ $i }}</option>
+                                    @else
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                    @endif
+                                    @endfor
+                                    </select>
                             </div>
                         </div>
                     <div class="row">
@@ -394,7 +437,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Despesa da Renda</h6>
+                                <h6 class="mb-0 "> Renda</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -410,7 +453,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Despesa da Eletrecidade</h6>
+                                <h6 class="mb-0 "> Eletrecidade</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -428,7 +471,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Despesa da Agua</h6>
+                                <h6 class="mb-0 "> Agua</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -443,7 +486,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Despesa dos Consumiveis</h6>
+                                <h6 class="mb-0 "> Consumiveis</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -462,7 +505,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Despesa da Manutenção</h6>
+                                <h6 class="mb-0 "> Manutenção</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -478,7 +521,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Despesa dos Equipamentos </h6>
+                                <h6 class="mb-0 "> Equipamentos </h6>
                                 <p class="text-sm "> Valor (em Euro)</p>
                             </div>
                         </div>
@@ -492,12 +535,12 @@
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
                                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                                     <div class="chart">
-                                        <canvas id="chart-Outros" class="chart-canvas" height="250"></canvas>
+                                        <canvas id="chart-Combs" class="chart-canvas" height="250"></canvas>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-0 "> Outras Despesas</h6>
+                                <h6 class="mb-0 "> Combústivel</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -514,6 +557,24 @@
                             </div>
                             <div class="card-body">
                                 <h6 class="mb-0 "> Total das Despesas </h6>
+                                <p class="text-sm "> Valor (em Euros)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 mt-4 mb-4">
+                        <div class="card z-index-2  ">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                    <div class="chart">
+                                        <canvas id="chart-Outros" class="chart-canvas" height="250"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="mb-0 "> Outras Despesas</h6>
                                 <p class="text-sm "> Valor (em Euros)</p>
                             </div>
                         </div>
@@ -1010,6 +1071,87 @@ options: {
         },
     },
 },
+});
+
+
+var Combs = document.getElementById("chart-Combs").getContext("2d");
+
+new Chart(Combs, {
+    type: "bar",
+    data: {
+        labels: ["Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        datasets: [{
+            label: "Sales",
+            tension: 0.4,
+            borderWidth: 0,
+            borderRadius: 4,
+            borderSkipped: false,
+            backgroundColor: "rgba(255, 255, 255, .8)",
+            data: [<?php echo join(',', $valoresCombs); ?>],
+            maxBarThickness: 6
+        }, ],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            }
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index',
+        },
+        scales: {
+            y: {
+                grid: {
+                    drawBorder: false,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5],
+                    color: 'rgba(255, 255, 255, .2)'
+                },
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 500,
+                    beginAtZero: true,
+                    padding: 10,
+                    font: {
+                        size: 14,
+                        weight: 300,
+                        family: "Roboto",
+                        style: 'normal',
+                        lineHeight: 2
+                    },
+                    color: "#fff"
+                },
+            },
+            x: {
+                grid: {
+                    drawBorder: false,
+                    display: true,
+                    drawOnChartArea: true,
+                    drawTicks: false,
+                    borderDash: [5, 5],
+                    color: 'rgba(255, 255, 255, .2)'
+                },
+                ticks: {
+                    display: true,
+                    color: '#f8f9fa',
+                    padding: 10,
+                    font: {
+                        size: 14,
+                        weight: 300,
+                        family: "Roboto",
+                        style: 'normal',
+                        lineHeight: 2
+                    },
+                }
+            },
+        },
+    },
 });
 
 
